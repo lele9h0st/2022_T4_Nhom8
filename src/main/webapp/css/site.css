@@ -1642,3 +1642,20 @@ summary::-webkit-details-marker {
 .menu .nav-link{
     white-space: nowrap;
 }
+.dropdown-region{
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+.dropdown-region> button{
+  background:none;
+  color: white;
+}
+.dropdown-menu{
+  background-color: #275eaf;
+  width: 100%;
+  border-radius:10px ;
+  padding: 0px;
+}
+.dropdown-menu>a{
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: white;
+}

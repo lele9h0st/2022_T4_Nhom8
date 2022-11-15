@@ -840,7 +840,138 @@
         </div>
         <!--Quảng cáo-->
         <div class="col-12 col-md-4">
+          <div class="dropdown w-100 dropdown-region">
+            <button class="btn dropdown-toggle w-100" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Dropdown button
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </div>
+          <div class="row">
+          <div class="col-6 col-md-6">
+            <article class="forecast">
 
+              <div class="location-wheather">
+                <div class="card mb-3">
+                  <a href="https://thoitiet.vn/ha-giang">
+                    <h3 class="card-city-title">Hà Giang</h3>
+                    <div class="card-city-body">
+                      <img src="./Dự báo thời tiết các tỉnh - thành phố, biển, đất liền ở Việt Nam_files/01d@2x.png"
+                           alt="Hà Giang" title="Clear">
+                      <div class="precipitation" title="Lượng mưa">
+                        <i class="bi bi-droplet"></i>
+                        65 %
+                      </div>
+                    </div>
+                    <p class="mb-0">
+                      Bầu trời quang đãng
+                    </p>
+                    <div class="card-city-footer">
+                      <p title="Hiện tại">23°</p>
+                      <p>/</p>
+                      <p title="Cảm giác như">23°</p>
+                    </div>
+
+                  </a>
+                </div>
+              </div>
+
+            </article>
+          </div>
+          <div class="col-6 col-md-6">
+            <article class="forecast">
+
+              <div class="location-wheather">
+                <div class="card mb-3">
+                  <a href="https://thoitiet.vn/cao-bang">
+                    <h3 class="card-city-title">Cao Bằng</h3>
+                    <div class="card-city-body">
+                      <img src="./Dự báo thời tiết các tỉnh - thành phố, biển, đất liền ở Việt Nam_files/01d@2x.png"
+                           alt="Cao Bằng" title="Clear">
+                      <div class="precipitation" title="Lượng mưa">
+                        <i class="bi bi-droplet"></i>
+                        58 %
+                      </div>
+                    </div>
+                    <p class="mb-0">
+                      Bầu trời quang đãng
+                    </p>
+                    <div class="card-city-footer">
+                      <p title="Hiện tại">24°</p>
+                      <p>/</p>
+                      <p title="Cảm giác như">23°</p>
+                    </div>
+
+                  </a>
+                </div>
+              </div>
+
+            </article>
+          </div>
+          <div class="col-6 col-md-6">
+            <article class="forecast">
+
+              <div class="location-wheather">
+                <div class="card mb-3">
+                  <a href="https://thoitiet.vn/lao-cai">
+                    <h3 class="card-city-title">Lào Cai</h3>
+                    <div class="card-city-body">
+                      <img src="./Dự báo thời tiết các tỉnh - thành phố, biển, đất liền ở Việt Nam_files/01d@2x.png"
+                           alt="Lào Cai" title="Clear">
+                      <div class="precipitation" title="Lượng mưa">
+                        <i class="bi bi-droplet"></i>
+                        66 %
+                      </div>
+                    </div>
+                    <p class="mb-0">
+                      Bầu trời quang đãng
+                    </p>
+                    <div class="card-city-footer">
+                      <p title="Hiện tại">23°</p>
+                      <p>/</p>
+                      <p title="Cảm giác như">24°</p>
+                    </div>
+
+                  </a>
+                </div>
+              </div>
+
+            </article>
+          </div>
+          <div class="col-6 col-md-6">
+            <article class="forecast">
+
+              <div class="location-wheather">
+                <div class="card mb-3">
+                  <a href="https://thoitiet.vn/dien-bien">
+                    <h3 class="card-city-title">Điện Biên</h3>
+                    <div class="card-city-body">
+                      <img src="./Dự báo thời tiết các tỉnh - thành phố, biển, đất liền ở Việt Nam_files/01d@2x.png"
+                           alt="Điện Biên" title="Clear">
+                      <div class="precipitation" title="Lượng mưa">
+                        <i class="bi bi-droplet"></i>
+                        62 %
+                      </div>
+                    </div>
+                    <p class="mb-0">
+                      Bầu trời quang đãng
+                    </p>
+                    <div class="card-city-footer">
+                      <p title="Hiện tại">23°</p>
+                      <p>/</p>
+                      <p title="Cảm giác như">23°</p>
+                    </div>
+
+                  </a>
+                </div>
+              </div>
+
+            </article>
+          </div>
+          </div>
         </div>
       </div>
     </div>
@@ -921,6 +1052,49 @@
     </div>
   </div>
 </div>
+<!-- jQuery-V1.12.4 -->
+<script src="js/vendor/jquery-1.12.4.min.js"></script>
+<!-- Popper js -->
+<script src="js/vendor/popper.min.js"></script>
+<!-- Bootstrap V4.1.3 Fremwork js -->
+<script src="js/bootstrap.min.js"></script>
+<!-- Ajax Mail js -->
+<script src="js/ajax-mail.js"></script>
+<!-- Meanmenu js -->
+<script src="js/jquery.meanmenu.min.js"></script>
+<!-- Wow.min js -->
+<script src="js/wow.min.js"></script>
+<!-- Slick Carousel js -->
+<script src="js/slick.min.js"></script>
+<!-- Owl Carousel-2 js -->
+<script src="js/owl.carousel.min.js"></script>
+<!-- Magnific popup js -->
+<script src="js/jquery.magnific-popup.min.js"></script>
+<!-- Isotope js -->
+<script src="js/isotope.pkgd.min.js"></script>
+<!-- Imagesloaded js -->
+<script src="js/imagesloaded.pkgd.min.js"></script>
+<!-- Mixitup js -->
+<script src="js/jquery.mixitup.min.js"></script>
+<!-- Countdown -->
+<script src="js/jquery.countdown.min.js"></script>
+<!-- Counterup -->
+<script src="js/jquery.counterup.min.js"></script>
+<!-- Waypoints -->
+<script src="js/waypoints.min.js"></script>
+<!-- Barrating -->
+<script src="js/jquery.barrating.min.js"></script>
+<!-- Jquery-ui -->
+<script src="js/jquery-ui.min.js"></script>
+<!-- Venobox -->
+<script src="js/venobox.min.js"></script>
+<!-- Nice Select js -->
+<script src="js/jquery.nice-select.min.js"></script>
+<!-- ScrollUp js -->
+<script src="js/scrollUp.min.js"></script>
+<!-- Main/Activator js -->
+<script src="js/main.js"></script>
+
 <script src="./Dự báo thời tiết Hà Giang hôm nay, ngày mai và 10 ngày tới_files/site.js.download"></script>
 <script src="./Dự báo thời tiết Hà Giang hôm nay, ngày mai và 10 ngày tới_files/geo.js.download"></script>
 
