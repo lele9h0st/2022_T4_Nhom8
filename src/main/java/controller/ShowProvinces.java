@@ -1,6 +1,7 @@
 package controller;
 
 import bean.Province;
+import bean.ProvinceWeather;
 import dao.ProvinceDao;
 
 import javax.servlet.*;
@@ -13,7 +14,7 @@ import java.util.List;
 public class ShowProvinces extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Province> provinces = ProvinceDao.getInstance().getProvinceList();
+        List<ProvinceWeather> provinces = ProvinceDao.getInstance().getListOfLastestWeather();
         request.setAttribute("provinceList", provinces);
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }

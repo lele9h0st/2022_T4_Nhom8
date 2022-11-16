@@ -49,13 +49,15 @@
     </div>
     <div class="weather_wrap">
         <c:forEach items="${provinceList}" var="item">
+        <a href="${pageContext.request.contextPath}/ProvinceDetail?pid=${item.province}">
             <div class="weather_box">
                 <h3>${item.province}</h3>
                 <img src="https://data.thoitiet.vn/weather/icons/03n@2x.png">
-                <p>Mây Rải Rác</p>
+                <p>${item.status}</p>
                 <p>20/20</p>
             </div>
-        </c:forEach>
+            </c:forEach>
+        </a>
     </div>
 </div>
 </body>

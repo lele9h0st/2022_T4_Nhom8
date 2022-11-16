@@ -5,16 +5,16 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "Province", value = "/Province")
+@WebServlet(name = "Province", value = "/ProvinceDetail")
 public class ProvinceDetail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        String provinceId = request.getParameter("pid");
+        request.getRequestDispatcher("province.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String provinceId = request.getParameter("pid");
 
     }
 }
