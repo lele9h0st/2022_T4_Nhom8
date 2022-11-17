@@ -49,7 +49,7 @@
     </div>
     <div class="weather_wrap">
         <c:forEach items="${provinceList}" var="item">
-        <a href="${pageContext.request.contextPath}/ProvinceDetail?pid=${item.province}">
+        <a href="${pageContext.request.contextPath}/ProvinceDetail?pid=${item.id}">
             <div class="weather_box">
                 <h3>${item.province}</h3>
                 <img src="https://data.thoitiet.vn/weather/icons/03n@2x.png">

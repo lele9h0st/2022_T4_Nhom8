@@ -3,6 +3,7 @@ package bean;
 import java.util.Date;
 
 public class ProvinceWeather {
+    private int id;
     private String province;
     private String region;
     private Date fullDate;
@@ -25,7 +26,16 @@ public class ProvinceWeather {
         this.time = time;
     }
 
-    public ProvinceWeather(String province, String region, Date fullDate, String time, int temperature, String status, int lowTemp, int highTemp, int humidity, int visibility, double wind, double uv, String air) {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public ProvinceWeather(int id, String province, String region, Date fullDate, String time, int temperature, String status, int lowTemp, int highTemp, int humidity, int visibility, double wind, double uv, String air) {
+        this.id = id;
         this.province = province;
         this.region = region;
         this.fullDate = fullDate;
