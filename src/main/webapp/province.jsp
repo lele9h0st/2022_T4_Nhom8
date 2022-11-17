@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="bean.ProvinceWeather" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <jsp:useBean id="provinceWeather" scope="request" type="bean.ProvinceWeather"/>
@@ -20,7 +21,8 @@
     <meta name="msapplication-TileImage" content="/icons/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <link rel="preconnect" href="https://fonts.gstatic.com/">
-    <link href="./Dự báo thời tiết ${provinceWeather.province} hôm nay, ngày mai và 10 ngày tới_files/css2" rel="stylesheet">
+    <link href="./Dự báo thời tiết ${provinceWeather.province} hôm nay, ngày mai và 10 ngày tới_files/css2"
+          rel="stylesheet">
 
     <link href="./css/card.css" rel="stylesheet">
 
@@ -56,6 +58,10 @@
                 }
             ]
         }
+
+
+
+
 
     </script>
 
@@ -610,7 +616,8 @@
                     <nav aria-label="breadcrumb" class="mt-2">
                         <ol class="breadcrumb mb-0">
                             <li class="breadcrumb-item"><a href="https://thoitiet.vn/">Trang chủ</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Thời tiết ${provinceWeather.province}</li>
+                            <li class="breadcrumb-item active" aria-current="page">Thời
+                                tiết ${provinceWeather.province}</li>
                         </ol>
                     </nav>
                 </div>
@@ -658,7 +665,8 @@
                             </div>
                             <div class="overview-caption ml-3">
                                 <p class="overview-caption-item overview-caption-item-detail">${provinceWeather.status}</p>
-                                <p class="overview-caption-item overview-caption-summary-detail">Cảm giác như ${provinceWeather.highTemp}°.</p>
+                                <p class="overview-caption-item overview-caption-summary-detail">Cảm giác
+                                    như ${provinceWeather.highTemp}°.</p>
                             </div>
                         </div>
                         <div class="d-flex flex-wrap justify-content-between weather-detail mt-2">
@@ -733,25 +741,25 @@
                                     </div>
                                 </div>
                             </div>
-<%--                            <div class="d-flex">--%>
-<%--                                <div class="avatar">--%>
-<%--                                    <div class="avatar-img rounded-circle">--%>
-<%--                                        <svg class="WeatherDetailsListItem--icon--NgMGn Icon--icon--2AbGu Icon--darkTheme--2U1o8"--%>
-<%--                                             set="current-conditions" name="dewpoint" theme="dark" data-testid="Icon"--%>
-<%--                                             aria-hidden="true" role="img" viewBox="0 0 24 24"><title>Dew Point</title>--%>
-<%--                                            <path d="M17 8.1a2.8 2.8 0 1 1 0-5.6 2.8 2.8 0 0 1 0 5.6zm0-1.85a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"></path>--%>
-<%--                                            <path fill-rule="evenodd"--%>
-<%--                                                  d="M9.743 18.912a4.182 4.182 0 0 1-2.928-1.182 3.972 3.972 0 0 1-.614-4.962.743.743 0 0 1 .646-.349c.234 0 .476.095.66.275l4.467 4.355c.385.376.39.998-.076 1.275a4.216 4.216 0 0 1-2.155.588M9.855 5c.316 0 .61.14.828.395.171.2.36.416.562.647 1.857 2.126 4.965 5.684 4.965 8.73 0 3.416-2.85 6.195-6.353 6.195-3.505 0-6.357-2.78-6.357-6.195 0-3.082 2.921-6.406 4.854-8.605.242-.275.47-.535.673-.772C9.245 5.14 9.54 5 9.855 5"></path>--%>
-<%--                                        </svg>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                                <div class="flex-1 pt-1 ml-2">--%>
-<%--                                    <span class="fw-bold mb-1">Điểm ngưng</span>--%>
-<%--                                    <div class="d-flex ml-auto align-items-center">--%>
-<%--                                        <span class="text-white op-8 fw-bold">17 °C</span>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
+                            <%--                            <div class="d-flex">--%>
+                            <%--                                <div class="avatar">--%>
+                            <%--                                    <div class="avatar-img rounded-circle">--%>
+                            <%--                                        <svg class="WeatherDetailsListItem--icon--NgMGn Icon--icon--2AbGu Icon--darkTheme--2U1o8"--%>
+                            <%--                                             set="current-conditions" name="dewpoint" theme="dark" data-testid="Icon"--%>
+                            <%--                                             aria-hidden="true" role="img" viewBox="0 0 24 24"><title>Dew Point</title>--%>
+                            <%--                                            <path d="M17 8.1a2.8 2.8 0 1 1 0-5.6 2.8 2.8 0 0 1 0 5.6zm0-1.85a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"></path>--%>
+                            <%--                                            <path fill-rule="evenodd"--%>
+                            <%--                                                  d="M9.743 18.912a4.182 4.182 0 0 1-2.928-1.182 3.972 3.972 0 0 1-.614-4.962.743.743 0 0 1 .646-.349c.234 0 .476.095.66.275l4.467 4.355c.385.376.39.998-.076 1.275a4.216 4.216 0 0 1-2.155.588M9.855 5c.316 0 .61.14.828.395.171.2.36.416.562.647 1.857 2.126 4.965 5.684 4.965 8.73 0 3.416-2.85 6.195-6.353 6.195-3.505 0-6.357-2.78-6.357-6.195 0-3.082 2.921-6.406 4.854-8.605.242-.275.47-.535.673-.772C9.245 5.14 9.54 5 9.855 5"></path>--%>
+                            <%--                                        </svg>--%>
+                            <%--                                    </div>--%>
+                            <%--                                </div>--%>
+                            <%--                                <div class="flex-1 pt-1 ml-2">--%>
+                            <%--                                    <span class="fw-bold mb-1">Điểm ngưng</span>--%>
+                            <%--                                    <div class="d-flex ml-auto align-items-center">--%>
+                            <%--                                        <span class="text-white op-8 fw-bold">17 °C</span>--%>
+                            <%--                                    </div>--%>
+                            <%--                                </div>--%>
+                            <%--                            </div>--%>
                             <div class="d-flex">
                                 <div class="avatar">
                                     <div class="avatar-img rounded-circle">
@@ -827,44 +835,55 @@
                                 <div id="carousel-hourly" class="carousel slide" data-ride="carousel"
                                      data-interval="9000" data-touch="true">
                                     <div class="carousel-inner row w-100 mx-auto" role="listbox">
-                                        <div class="carousel-item col-md-3 active">
-                                            <div class="location-wheather">
-                                                <div class="card">
-                                                    <h3 class="card-city-title">
-                                                        <span>Hiện tại</span>
+                                        <jsp:useBean id="weatherListInDay" scope="request" type="java.util.List"/>
+                                        <c:forEach items="${weatherListInDay}" var="item" varStatus="loop">
 
-                                                    </h3>
-                                                    <div class="card-city-body">
-                                                        <img src="./Dự báo thời tiết Hà Giang hôm nay, ngày mai và 10 ngày tới_files/04d@2x.png"
-                                                             title="Mây cụm">
-                                                        <div class="precipitation" title="Lượng mưa">
-                                                            <i class="bi bi-droplet"></i>
-                                                            61 %
+                                            <div class="carousel-item col-md-3
+                                            <c:if test="${loop.index==0}">
+                                                active
+                                            </c:if>
+"
+                                            >
+                                                <div class="location-wheather">
+                                                    <div class="card">
+                                                        <h3 class="card-city-title">
+                                                            <span>${item.time}</span>
+
+                                                        </h3>
+                                                        <div class="card-city-body">
+                                                            <img src="./Dự báo thời tiết Hà Giang hôm nay, ngày mai và 10 ngày tới_files/04d@2x.png"
+                                                                 title="Mây cụm">
+                                                            <div class="precipitation" title="Lượng mưa">
+                                                                <i class="bi bi-droplet"></i>
+                                                                    ${item.humidity} %
+                                                            </div>
+                                                        </div>
+                                                        <p class="mb-0">
+                                                                ${item.status}
+                                                        </p>
+                                                        <div class="card-city-footer">
+                                                            <p title="Nhiệt độ trung bình">${item.temperature} °C</p>
+                                                            <p>/</p>
+                                                            <p title="Cảm giác như">${item.highTemp} °C</p>
                                                         </div>
                                                     </div>
-                                                    <p class="mb-0">
-                                                        Mây cụm
-                                                    </p>
-                                                    <div class="card-city-footer">
-                                                        <p title="Nhiệt độ trung bình">25 °C</p>
-                                                        <p>/</p>
-                                                        <p title="Cảm giác như">26 °C</p>
-                                                    </div>
                                                 </div>
-                                            </div>
 
-                                        </div>
+                                            </div>
+                                        </c:forEach>
+
                                     </div>
                                     <span class="carousel-control-prev" href="#carousel-hourly" role="button"
                                           data-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
-                                </span>
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+    </span>
                                     <span class="carousel-control-next" href="#carousel-hourly" role="button"
                                           data-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Next</span>
-                                </span>
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+
+    </span>
                                 </div>
                             </div>
                             <!-- thoitiet-ngangchitietthoitiet -->
@@ -1163,6 +1182,7 @@
 <!-- Owl Carousel-2 js -->
 <script src="js/owl.carousel.min.js"></script>
 <!-- Magnific popup js -->
+
 <script src="js/jquery.magnific-popup.min.js"></script>
 <!-- Isotope js -->
 <script src="js/isotope.pkgd.min.js"></script>
@@ -1188,9 +1208,11 @@
 <script src="js/scrollUp.min.js"></script>
 <!-- Main/Activator js -->
 <script src="js/main.js"></script>
-
-<script src="./Dự báo thời tiết ${provinceWeather.province} hôm nay, ngày mai và 10 ngày tới_files/site.js.download"></script>
-<script src="./Dự báo thời tiết ${provinceWeather.province} hôm nay, ngày mai và 10 ngày tới_files/geo.js.download"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+<script src="./js/site.js.download"></script>
+<script src="./js/geo.js.download"></script>
 
 <script src="./Dự báo thời tiết ${provinceWeather.province} hôm nay, ngày mai và 10 ngày tới_files/chart.min.js.download"></script>
 <script src="./Dự báo thời tiết ${provinceWeather.province} hôm nay, ngày mai và 10 ngày tới_files/chartjs-plugin-datalabels.min.js.download"></script>
@@ -1422,7 +1444,8 @@
 
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async="" src="./Dự báo thời tiết ${provinceWeather.province} hôm nay, ngày mai và 10 ngày tới_files/js(1)"></script>
+<script async=""
+        src="./Dự báo thời tiết ${provinceWeather.province} hôm nay, ngày mai và 10 ngày tới_files/js(1)"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
 

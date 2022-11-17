@@ -71,18 +71,32 @@ public class ProvinceDao {
         }
     }
 
+    public List<ProvinceWeather> getLastestWeatherByDayAndProvince(int provinceId) {
+        try {
+            List<ProvinceWeather> provinceWeathers = DbConnector.get().withHandle(h ->
+                    h.createQuery("SELECT b.id, b.province,b.region,c.full_date,a.time,a.temperature,a.status,a.lowTemp,a.highTemp,a.humidity,a.visibility,a.wind,a.uv,a.air FROM `weather` a join `province_dim` b on a.province =b.id join `date_dim` c on a.date =c.date_sk WHERE isDelete=0 and a.province=? and c.date_sk= (select e.date_sk from weather f join date_dim e on f.date=e.date_sk order by e.date_sk desc limit 1);")
+                            .bind(0, provinceId)
+                            .mapToBean(ProvinceWeather.class).stream().collect(Collectors.toList())
+            );
+            return provinceWeathers;
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return null;
+        }
+    }
+
     public ProvinceWeather getLastestNewsByProvince(int provinceId) {
-//        try {
+        try {
             List<ProvinceWeather> provinceWeathers = DbConnector.get().withHandle(h ->
                     h.createQuery("SELECT b.id, b.province,b.region,c.full_date,a.time,a.temperature,a.status,a.lowTemp,a.highTemp,a.humidity,a.visibility,a.wind,a.uv,a.air FROM `weather` a join `province_dim` b on a.province =b.id join `date_dim` c on a.date =c.date_sk WHERE isDelete=0 and dateUpdate='0' and a.province=?;")
                             .bind(0, provinceId)
                             .mapToBean(ProvinceWeather.class).stream().collect(Collectors.toList())
             );
             return provinceWeathers.get(0);
-//        } catch (Exception e) {
-//            System.out.println(e.toString());
-//            return null;
-//        }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return null;
+        }
     }
 
     public List<ProvinceWeather> getWeatherByProvince(int provinceId) {
@@ -104,7 +118,7 @@ public class ProvinceDao {
 //        List<Province> l = dao.getProvinceList();
 //        for (Province p : l)
 //            System.out.println(p.toString());
-        List<ProvinceWeather> pw = dao.getWeatherByProvince(1);
+        List<ProvinceWeather> pw = dao.getLastestWeatherByDayAndProvince(1);
         for (ProvinceWeather p : pw) {
             System.out.println(p.toString());
         }
