@@ -28,9 +28,9 @@
 
     <link rel="stylesheet" href="./css/site.css">
     <link href="./css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-          integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <!-- CSS only -->
+<%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">--%>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script type="text/javascript" async=""
             src="./Dự báo thời tiết ${provinceWeather.province} hôm nay, ngày mai và 10 ngày tới_files/analytics.js.download"></script>
     <script type="text/javascript" async=""
@@ -58,6 +58,9 @@
                 }
             ]
         }
+
+
+
 
 
 
@@ -828,9 +831,19 @@
                                     <h2>
                                         Thời tiết ${provinceWeather.province} theo giờ (24h)
                                     </h2>
-                                    <a href="https://thoitiet.vn/ha-giang/theo-gio" class="weather-feature-day-btn">
-                                        Thời tiết 24h
-                                    </a>
+                                    <%--                                    <a href="https://thoitiet.vn/ha-giang/theo-gio" class="weather-feature-day-btn">--%>
+                                    <%--                                        Thời tiết 24h--%>
+                                    <%--                                    </a>--%>
+                                    <div class="dropdown">
+                                        <button class="btn bg-white dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Dropdown button
+                                        </button>
+                                        <div id="sandbox-container" class="dropdown-menu" aria-labelledby="dropdownMenuButton" style=" width: 210px;">
+                                            <div></div>
+                                        </div>
+                                    </div>
+
+
                                 </div>
                                 <div id="carousel-hourly" class="carousel slide" data-ride="carousel"
                                      data-interval="9000" data-touch="true">
@@ -941,17 +954,7 @@
                 </div>
                 <!--Quảng cáo-->
                 <div class="col-12 col-md-4">
-                    <div class="dropdown w-100 dropdown-region">
-                        <button class="btn dropdown-toggle w-100" type="button" id="dropdownMenuButton"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown button
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </div>
+
                     <div class="row">
                         <div class="col-6 col-md-6">
                             <article class="forecast">
@@ -1206,6 +1209,8 @@
 <script src="js/jquery.nice-select.min.js"></script>
 <!-- ScrollUp js -->
 <script src="js/scrollUp.min.js"></script>
+<script src="js/bootstrap-datepicker.min.js"></script>
+<script src="js/bootstrap-datepicker.vi.min.js"></script>
 <!-- Main/Activator js -->
 <script src="js/main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"

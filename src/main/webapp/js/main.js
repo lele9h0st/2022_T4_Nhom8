@@ -581,4 +581,8 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
             order: [[0, "asc"]],
         });
     });
+
+    $('#sandbox-container div').datepicker({
+        language: "vi"
+    });
 })(jQuery);
