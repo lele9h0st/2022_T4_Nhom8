@@ -1,6 +1,15 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: hoang
+  Date: 11/16/2022
+  Time: 5:12 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:useBean id="provinceList" scope="request" type="java.util.List"/>
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -23,7 +32,7 @@
     <link rel="stylesheet" href="./css/site.css">
     <link href="./css/bootstrap.min.css" rel="stylesheet">
 
-</head>
+
 
 
 <body>
@@ -566,6 +575,7 @@
     </div>
 </nav>
 <div id="weather_container">
+
     <div class="title">
         <h3>DỰ BÁO THỜI TIẾT CÁC TỈNH/THÀNH PHỐ</h3>
     </div>
@@ -631,5 +641,8 @@
         crossorigin="anonymous"></script>
 <script src="./js/site.js.download"></script>
 <script src="./js/geo.js.download"></script>
+
+
+
 </body>
 </html>
