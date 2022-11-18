@@ -28,11 +28,12 @@
 
     <link rel="stylesheet" href="./css/site.css">
     <link href="./css/bootstrap.min.css" rel="stylesheet">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-
+    <!-- CSS only -->
+    <%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">--%>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script type="text/javascript" async=""
             src="./Dự báo thời tiết ${provinceWeather.province} hôm nay, ngày mai và 10 ngày tới_files/analytics.js.download"></script>
     <script type="text/javascript" async=""
@@ -60,7 +61,6 @@
                 }
             ]
         }
-
 
 
 
@@ -715,7 +715,7 @@
                         <div class="d-flex flex-column flex-sm-row justify-content-between">
                             <div class="location-name">
                             <span class="location-name-icon">
-                                <i class="bi bi-geo"></i>
+                                <i class="fa-solid fa-location-pin"></i>
                             </span>
                                 <h1 class="location-name-main">
                                     <a href="https://thoitiet.vn/ha-giang">
@@ -724,7 +724,7 @@
                                 </h1>
                                 <a href="https://thoitiet.vn/ha-giang#" rel="nofollow" title="Chọn làm địa chỉ mặc định"
                                    class="btn-current-location" data-lat="22.7933" data-lng="105.01241">
-                                    <i class="bi bi-house-door"></i>
+                                    <i class="fa-regular fa-window-frame"></i>
                                 </a>
                             </div>
                             <div class="share-button">
@@ -910,18 +910,11 @@
 
                     <div class="location-data">
                         <div class="location-data-summary">
-
-                            <div class="current-location">
-
+                            <div class="current-location hourly-tab">
                                 <div class="weather-feature d-flex flex-wrap justify-content-between align-items-center mt-2 mb-2">
                                     <h2>
                                         Thời tiết ${provinceWeather.province} theo giờ (24h)
                                     </h2>
-
-                                    <a href="https://thoitiet.vn/ha-giang/theo-gio" class="weather-feature-day-btn">
-                                        Thời tiết 24h
-                                    </a>
-
                                     <p id="hidden-text-id" style="display:none;">${provinceWeather.id}</p>
                                     <p id="hidden-text-path" style="display:none;">http://localhost:8080/2022_T4_Nhom8_war_exploded/ProvinceDetail</p>
                                     <%--                                    <a href="https://thoitiet.vn/ha-giang/theo-gio" class="weather-feature-day-btn">--%>
@@ -957,11 +950,9 @@
 
                                                         </h3>
                                                         <div class="card-city-body">
-
                                                             <img src="https://data.thoitiet.vn/weather/icons/03n@2x.png" title="mây cụm">
                                                             <div class="precipitation" title="Lượng mưa">
                                                                 <i class="fa-solid fa-droplet"></i>
-
                                                                     ${item.humidity} %
                                                             </div>
                                                         </div>
@@ -1165,7 +1156,7 @@
                                             <h3 class="card-city-title">Điện Biên</h3>
                                             <div class="card-city-body">
 
-                                                <img src="https://data.thoitiet.vn/weather/icons/03n@2x.png" alt="Điện Biêngit" title="Clear">
+                                                <img src="https://data.thoitiet.vn/weather/icons/03n@2x.png" alt="Điện Biêng" title="Clear">
                                                 <div class="precipitation" title="Lượng mưa">
                                                     <i class="fa-solid fa-droplet"></i>
 
@@ -1320,10 +1311,8 @@
 <script src="js/jquery.nice-select.min.js"></script>
 <!-- ScrollUp js -->
 <script src="js/scrollUp.min.js"></script>
-
 <script src="js/bootstrap-datepicker.min.js"></script>
 <script src="js/bootstrap-datepicker.vi.min.js"></script>
-
 <!-- Main/Activator js -->
 <script src="js/main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
@@ -1334,7 +1323,6 @@
 
 <script src="./Dự báo thời tiết ${provinceWeather.province} hôm nay, ngày mai và 10 ngày tới_files/chart.min.js.download"></script>
 <script src="./Dự báo thời tiết ${provinceWeather.province} hôm nay, ngày mai và 10 ngày tới_files/chartjs-plugin-datalabels.min.js.download"></script>
-
 <script>
     $(document).ready(function () {
         $('.air-api').tooltip()

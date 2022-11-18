@@ -576,7 +576,7 @@
 </nav>
 <div id="weather_container">
 
-    <div class="title">
+    <div class="title_weather">
         <h3>DỰ BÁO THỜI TIẾT CÁC TỈNH/THÀNH PHỐ</h3>
     </div>
     <div class="weather_wrap">
