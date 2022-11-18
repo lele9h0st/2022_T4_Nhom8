@@ -826,17 +826,19 @@
 
                     <div class="location-data">
                         <div class="location-data-summary">
-                            <div class="current-location">
+                            <div class="current-location hourly-tab">
                                 <div class="weather-feature d-flex flex-wrap justify-content-between align-items-center mt-2 mb-2">
                                     <h2>
                                         Thời tiết ${provinceWeather.province} theo giờ (24h)
                                     </h2>
+                                    <p id="hidden-text-id" style="display:none;">${provinceWeather.id}</p>
+                                    <p id="hidden-text-path" style="display:none;">http://localhost:8080/2022_T4_Nhom8_war_exploded/ProvinceDetail</p>
                                     <%--                                    <a href="https://thoitiet.vn/ha-giang/theo-gio" class="weather-feature-day-btn">--%>
                                     <%--                                        Thời tiết 24h--%>
                                     <%--                                    </a>--%>
                                     <div class="dropdown">
                                         <button class="btn bg-white dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Dropdown button
+                                            <span class="dropdown-date-show">${requestScope.showDate}</span>
                                         </button>
                                         <div id="sandbox-container" class="dropdown-menu" aria-labelledby="dropdownMenuButton" style=" width: 210px;">
                                             <div></div>

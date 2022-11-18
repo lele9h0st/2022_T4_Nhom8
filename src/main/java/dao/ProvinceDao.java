@@ -71,11 +71,12 @@ public class ProvinceDao {
         }
     }
 
-    public List<ProvinceWeather> getLastestWeatherByDayAndProvince(int provinceId) {
+    public List<ProvinceWeather> getLastestWeatherByDayAndProvince(int provinceId,String date) {
         try {
             List<ProvinceWeather> provinceWeathers = DbConnector.get().withHandle(h ->
-                    h.createQuery("SELECT b.id, b.province,b.region,c.full_date,a.time,a.temperature,a.status,a.lowTemp,a.highTemp,a.humidity,a.visibility,a.wind,a.uv,a.air FROM `weather` a join `province_dim` b on a.province =b.id join `date_dim` c on a.date =c.date_sk WHERE isDelete=0 and a.province=? and c.date_sk= (select e.date_sk from weather f join date_dim e on f.date=e.date_sk order by e.date_sk desc limit 1);")
+                    h.createQuery("SELECT b.id, b.province,b.region,c.full_date,a.time,a.temperature,a.status,a.lowTemp,a.highTemp,a.humidity,a.visibility,a.wind,a.uv,a.air FROM `weather` a join `province_dim` b on a.province =b.id join `date_dim` c on a.date =c.date_sk WHERE isDelete=0 and a.province=? and c.full_date= ?;")
                             .bind(0, provinceId)
+                            .bind(1,date)
                             .mapToBean(ProvinceWeather.class).stream().collect(Collectors.toList())
             );
             return provinceWeathers;
@@ -118,7 +119,7 @@ public class ProvinceDao {
 //        List<Province> l = dao.getProvinceList();
 //        for (Province p : l)
 //            System.out.println(p.toString());
-        List<ProvinceWeather> pw = dao.getLastestWeatherByDayAndProvince(1);
+        List<ProvinceWeather> pw = dao.getLastestWeatherByDayAndProvince(1,"2022-11-18");
         for (ProvinceWeather p : pw) {
             System.out.println(p.toString());
         }
