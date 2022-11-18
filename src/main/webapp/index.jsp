@@ -2,9 +2,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<<<<<<< Updated upstream
-    <title>JSP - Hello World</title>
-=======
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,19 +23,10 @@
     <link rel="stylesheet" href="./css/site.css">
     <link href="./css/bootstrap.min.css" rel="stylesheet">
 
->>>>>>> Stashed changes
 </head>
 
 
 <body>
-<<<<<<< Updated upstream
-<h1><%= "Hello World!" %>
-</h1>
-<a href="district.jsp">click</a>
-<br/>
-<a href="hello-servlet">Hello Servlet</a>
-=======
-
 <header class="bg-white">
     <div class="py-1 border-bottom shadow-sm">
         <div class="container">
@@ -643,6 +631,5 @@
         crossorigin="anonymous"></script>
 <script src="./js/site.js.download"></script>
 <script src="./js/geo.js.download"></script>
->>>>>>> Stashed changes
 </body>
 </html>
