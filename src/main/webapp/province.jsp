@@ -1,5 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="bean.ProvinceWeather" %>
+<%@ page import="java.util.*" %>
+<%@ page import="com.google.gson.Gson" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <jsp:useBean id="provinceWeather" scope="request" type="bean.ProvinceWeather"/>
 <!DOCTYPE html>
@@ -915,10 +917,11 @@
                                 <h2>
                                     Nhiệt độ và khả năng có mưa ${provinceWeather.province} trong 12h tới
                                 </h2>
-                                <div class="chart-container bg-white">
-                                    <canvas id="rainHour" width="897" height="448"
-                                            style="display: block; box-sizing: border-box; height: 358.4px; width: 717.6px;"></canvas>
+                                <div class="chart-container1 bg-white">
+                                    <div  id="chart-container"
+                                            style="height: 358.4px; width: 717.6px;"></div>
                                 </div>
+
                             </div>
 
                             <div class="google-ads-container mt-2">
@@ -1221,224 +1224,50 @@
 <script src="./js/site.js.download"></script>
 <script src="./js/geo.js.download"></script>
 
-<script src="./Dự báo thời tiết ${provinceWeather.province} hôm nay, ngày mai và 10 ngày tới_files/chart.min.js.download"></script>
-<script src="./Dự báo thời tiết ${provinceWeather.province} hôm nay, ngày mai và 10 ngày tới_files/chartjs-plugin-datalabels.min.js.download"></script>
+<%
+    Gson gsonObj = new Gson();
+    Map<Object,Object> map = null;
+    List<Map<Object,Object>> list = new ArrayList<Map<Object,Object>>();
 
-<script>
-    $(document).ready(function () {
-        $('.air-api').tooltip()
-    })
-    const data = {
-        labels: ['CN Ngày 06', 'T2 Ngày 07', 'T3 Ngày 08', 'T4 Ngày 09', 'T5 Ngày 10', 'T6 Ngày 11', 'T7 Ngày 12', 'CN Ngày 13'],
-        datasets: [
-            {
-                type: 'line',
-                label: 'Nhiệt độ',
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgb(54, 162, 235)',
-                data: [26, 26, 27, 26, 26, 26, 25, 24],
-                datalabels: {
-                    color: 'rgb(0, 0, 0)',
-                    align: 'end',
-                    font: {
-                        weight: 'bold'
-                    },
-                    formatter: function (value, context) {
-                        return value + '°';
-                    }
-                }
+    map = new HashMap<Object,Object>(); map.put("label", "FY07"); map.put("y", 188); list.add(map);
+    map = new HashMap<Object,Object>(); map.put("label", "FY08"); map.put("y", 213); list.add(map);
+    map = new HashMap<Object,Object>(); map.put("label", "FY09"); map.put("y", 213); list.add(map);
+    map = new HashMap<Object,Object>(); map.put("label", "FY10"); map.put("y", 219); list.add(map);
+    map = new HashMap<Object,Object>(); map.put("label", "FY11"); map.put("y", 207); list.add(map);
+    map = new HashMap<Object,Object>(); map.put("label", "FY12"); map.put("y", 167); list.add(map);
+    map = new HashMap<Object,Object>(); map.put("label", "FY13"); map.put("y", 136); list.add(map);
+    map = new HashMap<Object,Object>(); map.put("label", "FY14"); map.put("y", 152); list.add(map);
+    map = new HashMap<Object,Object>(); map.put("label", "FY15"); map.put("y", 129); list.add(map);
+    map = new HashMap<Object,Object>(); map.put("label", "FY16"); map.put("y", 155); list.add(map);
+
+    String dataPoints = gsonObj.toJson(list);
+%>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script >
+
+        var chart = new CanvasJS.Chart("chart-container", {
+            theme: "light2",
+            title: {
+                text: "Nhiệt độ trung bình trong 7 ngày qua."
             },
-            {
-                type: 'line',
-                label: 'Khả năng có mưa',
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgb(255, 99, 132)',
-                data: [1, 0, 0, 32, 35, 44, 34, 58],
-                datalabels: {
-                    align: 'end',
-                    color: 'rgb(0, 0, 0)',
-                    font: {
-                        weight: 'bold'
-                    },
-                    formatter: function (value, context) {
-                        return value + '%';
-                    }
-                }
+            axisX: {
+                title: "Ngày"
+            },
+            axisY: {
+                title: "Nhiệt độ °C",
+                includeZero: true
+            },
+            data: [{
+                type: "line",
+                yValueFormatString: "#,##0mn °C",
+                dataPoints : <%=request.getAttribute("listTempChart")%>
             }]
-    };
+        });
+        chart.render();
 
-    const config = {
-        plugins: [ChartDataLabels],
-        type: 'line',
-        data: data,
-        options: {
-            plugins: {
-                // Change options for ALL labels of THIS CHART
-                datalabels: {
-                    color: '#36A2EB'
-                }
-            },
-            responsive: true,
-            scales: {
-                y: {
-                    display: true,
-                    scaleOverride: true,
-                    suggestedMax: 68,
-                    suggestedMin: -10,
-                }
-            },
-            legend: {
-                display: true,
-                labels: {
-                    color: 'rgb(255, 99, 132)'
-                },
-                padding: 100
-            }
 
-        }
-    };
-
-    function drawChart() {
-        var ctx = document.getElementById('myChart');
-        new Chart(ctx, config);
-    }
-
-    drawChart();
-
-    // char mưa
-    const dataMua = {
-        labels: ['CN Ngày 06', 'T2 Ngày 07', 'T3 Ngày 08', 'T4 Ngày 09', 'T5 Ngày 10', 'T6 Ngày 11', 'T7 Ngày 12', 'CN Ngày 13'],
-        datasets: [
-            {
-                type: 'bar',
-                label: 'Lượng mưa (mm)',
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgb(54, 162, 235)',
-                data: [0, 0, 0, 0.24, 0.4, 0.79, 0.63, 2.43],
-                datalabels: {
-                    color: 'rgb(0, 0, 0)',
-                    align: 'end',
-                    font: {
-                        weight: 'bold'
-                    },
-                    formatter: function (value, context) {
-                        return value;
-                    }
-                }
-            }]
-    };
-    const configMua = {
-        plugins: [ChartDataLabels],
-        type: 'line',
-        data: dataMua,
-        options: {
-            plugins: {
-                // Change options for ALL labels of THIS CHART
-                datalabels: {
-                    color: '#36A2EB'
-                }
-            },
-            responsive: true,
-            scales: {
-                y: {
-                    display: true,
-                    suggestedMax: 7.43,
-                }
-            },
-            legend: {
-                display: true,
-                position: 'right',
-                align: 'start',
-                labels: {
-                    color: 'rgb(255, 99, 132)'
-                }
-            }
-
-        }
-    };
-
-    function drawChartMua() {
-        var ctx = document.getElementById('rain');
-        new Chart(ctx, configMua);
-    }
-
-    drawChartMua();
-
-    // theo giờ
-    const dataMuaTheoGio = {
-        labels: ['16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '00:00', '01:00', '02:00', '03:00'],
-        datasets: [
-            {
-                type: 'line',
-                label: 'Nhiệt độ',
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgb(54, 162, 235)',
-                data: [25, 25, 24, 23, 22, 20, 20, 19, 19, 18, 17, 17],
-                datalabels: {
-                    color: 'rgb(0, 0, 0)',
-                    align: 'end',
-                    font: {
-                        weight: 'bold'
-                    },
-                    formatter: function (value, context) {
-                        return value + '°';
-                    }
-                }
-            },
-            {
-                type: 'bar',
-                label: 'Khả năng có mưa',
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgb(255, 99, 132)',
-                data: [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                datalabels: {
-                    align: 'end',
-                    anchor: 'end',
-                    color: 'rgb(0, 0, 0)',
-                    font: {
-                        weight: 'bold'
-                    },
-                    formatter: function (value, context) {
-                        return value + '%';
-                    }
-                }
-            }]
-    };
-    const configMuaTheoGio = {
-        plugins: [ChartDataLabels],
-        type: 'line',
-        data: dataMuaTheoGio,
-        options: {
-            plugins: {
-                // Change options for ALL labels of THIS CHART
-                datalabels: {
-                    color: '#36A2EB'
-                }
-            },
-            responsive: true,
-            scales: {
-                y: {
-                    display: true,
-                    suggestedMax: 30,
-                }
-            },
-            legend: {
-                display: true,
-                labels: {
-                    color: 'rgb(255, 99, 132)'
-                }
-            }
-
-        }
-    };
-
-    function drawChartMuaHour() {
-        var ctx = document.getElementById('rainHour');
-        new Chart(ctx, configMuaTheoGio);
-    }
-
-    drawChartMuaHour();
 </script>
+
 <style>
     @media (max-width: 786px) {
         .container {
@@ -1449,21 +1278,6 @@
     }
 </style>
 
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async=""
-        src="./Dự báo thời tiết ${provinceWeather.province} hôm nay, ngày mai và 10 ngày tới_files/js(1)"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-        dataLayer.push(arguments);
-    }
-
-    gtag('js', new Date());
-
-    gtag('config', 'G-KVHV391KVM');
-</script>
 
 
 </body>

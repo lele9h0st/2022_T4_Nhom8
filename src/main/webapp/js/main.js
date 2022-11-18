@@ -586,7 +586,6 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
         language: "vi",
         todayHighlight: true
     }).on("changeDate", function(e) {
-        // console.log(e.format([3,1,2],"yyyy-mm-dd"));
         let id=$("#hidden-text-id").text();
         let path=$("#hidden-text-path").text();
         $.ajax({
@@ -595,8 +594,6 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
             data: {pid:id,date:e.format([3,1,2],"yyyy-mm-dd")},
             success: function (result) {
                 var listSize = Object.keys(result).length;
-                console.log("ajax work")
-                console.log(result)
                 $("#carousel-hourly").load(path+"?pid="+id+"&date="+e.format([3,1,2],"yyyy-mm-dd")+" #carousel-hourly")
                 $(".dropdown-date-show").load(path+"?pid="+id+"&date="+e.format([3,1,2],"yyyy-mm-dd")+" .dropdown-date-show")
             }

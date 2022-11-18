@@ -4,7 +4,10 @@ import bean.Province;
 import bean.ProvinceWeather;
 import db.DbConnector;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ProvinceDao {
@@ -71,12 +74,12 @@ public class ProvinceDao {
         }
     }
 
-    public List<ProvinceWeather> getLastestWeatherByDayAndProvince(int provinceId,String date) {
+    public List<ProvinceWeather> getLastestWeatherByDayAndProvince(int provinceId, String date) {
         try {
             List<ProvinceWeather> provinceWeathers = DbConnector.get().withHandle(h ->
                     h.createQuery("SELECT b.id, b.province,b.region,c.full_date,a.time,a.temperature,a.status,a.lowTemp,a.highTemp,a.humidity,a.visibility,a.wind,a.uv,a.air FROM `weather` a join `province_dim` b on a.province =b.id join `date_dim` c on a.date =c.date_sk WHERE isDelete=0 and a.province=? and c.full_date= ?;")
                             .bind(0, provinceId)
-                            .bind(1,date)
+                            .bind(1, date)
                             .mapToBean(ProvinceWeather.class).stream().collect(Collectors.toList())
             );
             return provinceWeathers;
@@ -94,6 +97,22 @@ public class ProvinceDao {
                             .mapToBean(ProvinceWeather.class).stream().collect(Collectors.toList())
             );
             return provinceWeathers.get(0);
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return null;
+        }
+    }
+
+    public List<ProvinceWeather> getLastest7WeatherByDayAndProvince(int provinceId, String date) {
+        try {
+            List<ProvinceWeather> provinceWeathers = DbConnector.get().withHandle(h ->
+                    h.createQuery("SELECT b.id,b.province,b.region,c.full_date,a.time,AVG(a.temperature) as temperature,a.status,a.lowTemp,a.highTemp,a.humidity,a.visibility,a.wind,a.uv,a.air FROM `weather` a join `province_dim` b on a.province =b.id join `date_dim` c on a.date =c.date_sk WHERE isDelete=0 and a.province=? and c.full_date in (SELECT full_date from date_dim where date_sk < (SELECT date_sk from date_dim where full_date =?) and date_sk > ((SELECT date_sk from date_dim where full_date =?)-7)) group by c.full_date;")
+                            .bind(0, provinceId)
+                            .bind(1, date)
+                            .bind(2, date)
+                            .mapToBean(ProvinceWeather.class).stream().collect(Collectors.toList())
+            );
+            return provinceWeathers;
         } catch (Exception e) {
             System.out.println(e.toString());
             return null;
@@ -119,12 +138,25 @@ public class ProvinceDao {
 //        List<Province> l = dao.getProvinceList();
 //        for (Province p : l)
 //            System.out.println(p.toString());
-        List<ProvinceWeather> pw = dao.getLastestWeatherByDayAndProvince(1,"2022-11-18");
+        List<ProvinceWeather> pw = dao.getLastestWeatherByDayAndProvince(1, "2022-11-18");
         for (ProvinceWeather p : pw) {
             System.out.println(p.toString());
         }
 //        ProvinceWeather lastest=dao.getLastestNewsByProvince(1);
 //        System.out.println(lastest);
 
+    }
+
+    public List<Map<Object, Object>> getListChart(int id, String date) {
+        Map<Object, Object> map = null;
+        List<Map<Object, Object>> list = new ArrayList<Map<Object, Object>>();
+        List<ProvinceWeather> pw = getLastest7WeatherByDayAndProvince(id, date);
+        for (ProvinceWeather p : pw) {
+            map = new HashMap<Object, Object>();
+            map.put("label", p.getFullDate());
+            map.put("y", p.getTemperature());
+            list.add(map);
+        }
+        return list;
     }
 }
