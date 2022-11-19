@@ -8,6 +8,14 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="provinceList" scope="request" type="java.util.List"/>
+<jsp:useBean id="dong_bac_bo" scope="request" type="java.util.List"/>
+<jsp:useBean id="tay_bac_bo" scope="request" type="java.util.List"/>
+<jsp:useBean id="db_songhong" scope="request" type="java.util.List"/>
+<jsp:useBean id="bac_trung_bo" scope="request" type="java.util.List"/>
+<jsp:useBean id="nam_trung_bo" scope="request" type="java.util.List"/>
+<jsp:useBean id="tay_nguyen" scope="request" type="java.util.List"/>
+<jsp:useBean id="dong_nam_bo" scope="request" type="java.util.List"/>
+<jsp:useBean id="db_songcuulong" scope="request" type="java.util.List"/>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -119,54 +127,15 @@
                                                 ${provinceWeather.province}
                                             </a>
                                         </li>-->
-                                        <li>
-                                            <a href="https://thoitiet.vn/cao-bang" title="Cao Bằng">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Cao Bằng
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/bac-kan" title="Bắc Kạn">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Bắc Kạn
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/tuyen-quang" title="Tuyên Quang">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Tuyên Quang
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/thai-nguyen" title="Thái Nguyên">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Thái Nguyên
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/lang-son" title="Lạng Sơn">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Lạng Sơn
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/quang-ninh" title="Quảng Ninh">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Quảng Ninh
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/bac-giang" title="Bắc Giang">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Bắc Giang
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/phu-tho" title="Phú Thọ">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Phú Thọ
-                                            </a>
-                                        </li>
+                                        <c:forEach items="${dong_bac_bo}" var="item">
+                                            <li>
+                                                <a href="${pageContext.request.contextPath}/ProvinceDetail?pid=${item.id}">
+                                                    <i class="fa-solid fa-arrow-right"></i>
+                                                    ${item.province}
+                                                </a>
+                                            </li>
+                                        </c:forEach>
+
                                     </ul>
                                 </div>  <!-- col-megamenu.// -->
                             </div><!-- end col-3 -->
@@ -174,42 +143,15 @@
                                 <div class="col-megamenu">
                                     <h6 class="title">Tây Bắc Bộ</h6>
                                     <ul class="mega-submenu">
-                                        <li>
-                                            <a href="https://thoitiet.vn/lao-cai" title="Lào Cai">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Lào Cai
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/dien-bien" title="Điện Biên">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Điện Biên
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/lai-chau" title="Lai Châu">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Lai Châu
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/son-la" title="Sơn La">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Sơn La
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/yen-bai" title="Yên Bái">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Yên Bái
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/hoa-binh" title="Hoà Bình">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Hoà Bình
-                                            </a>
-                                        </li>
+                                        <c:forEach items="${tay_bac_bo}" var="item">
+                                            <li>
+                                                <a href="${pageContext.request.contextPath}/ProvinceDetail?pid=${item.id}">
+                                                    <i class="fa-solid fa-arrow-right"></i>
+                                                        ${item.province}
+                                                </a>
+                                            </li>
+                                        </c:forEach>
+
                                     </ul>
                                 </div>  <!-- col-megamenu.// -->
                             </div><!-- end col-3 -->
@@ -217,66 +159,15 @@
                                 <div class="col-megamenu">
                                     <h6 class="title">Đồng bằng sông Hồng</h6>
                                     <ul class="mega-submenu">
-                                        <li>
-                                            <a href="https://thoitiet.vn/ha-noi" title="Hà Nội">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Hà Nội
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/vinh-phuc" title="Vĩnh Phúc">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Vĩnh Phúc
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/bac-ninh" title="Bắc Ninh">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Bắc Ninh
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/hai-duong" title="Hải Dương">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Hải Dương
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/hai-phong" title="Hải Phòng">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Hải Phòng
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/hung-yen" title="Hưng Yên">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Hưng Yên
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/thai-binh" title="Thái Bình">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Thái Bình
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/ha-nam" title="Hà Nam">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Hà Nam
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/nam-dinh" title="Nam Định">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Nam Định
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/ninh-binh" title="Ninh Bình">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Ninh Bình
-                                            </a>
-                                        </li>
+                                        <c:forEach items="${db_songhong}" var="item">
+                                            <li>
+                                                <a href="${pageContext.request.contextPath}/ProvinceDetail?pid=${item.id}">
+                                                    <i class="fa-solid fa-arrow-right"></i>
+                                                        ${item.province}
+                                                </a>
+                                            </li>
+                                        </c:forEach>
+
                                     </ul>
                                 </div>  <!-- col-megamenu.// -->
                             </div><!-- end col-3 -->
@@ -284,42 +175,15 @@
                                 <div class="col-megamenu">
                                     <h6 class="title">Bắc Trung Bộ</h6>
                                     <ul class="mega-submenu">
-                                        <li>
-                                            <a href="https://thoitiet.vn/thanh-hoa" title="Thanh Hóa">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Thanh Hóa
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/nghe-an" title="Nghệ An">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Nghệ An
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/ha-tinh" title="Hà Tĩnh">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Hà Tĩnh
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/quang-binh" title="Quảng Bình">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Quảng Bình
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/quang-tri" title="Quảng Trị">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Quảng Trị
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/thua-thien-hue" title="Thừa Thiên Huế">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Thừa Thiên Huế
-                                            </a>
-                                        </li>
+                                        <c:forEach items="${bac_trung_bo}" var="item">
+                                            <li>
+                                                <a href="${pageContext.request.contextPath}/ProvinceDetail?pid=${item.id}">
+                                                    <i class="fa-solid fa-arrow-right"></i>
+                                                        ${item.province}
+                                                </a>
+                                            </li>
+                                        </c:forEach>
+
                                     </ul>
                                 </div>  <!-- col-megamenu.// -->
                             </div><!-- end col-3 -->
@@ -327,54 +191,15 @@
                                 <div class="col-megamenu">
                                     <h6 class="title">Nam Trung Bộ</h6>
                                     <ul class="mega-submenu">
-                                        <li>
-                                            <a href="https://thoitiet.vn/da-nang" title="Đà Nẵng">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Đà Nẵng
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/quang-nam" title="Quảng Nam">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Quảng Nam
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/quang-ngai" title="Quảng Ngãi">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Quảng Ngãi
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/binh-dinh" title="Bình Định">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Bình Định
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/phu-yen" title="Phú Yên">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Phú Yên
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/khanh-hoa" title="Khánh Hòa">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Khánh Hòa
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/ninh-thuan" title="Ninh Thuận">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Ninh Thuận
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/binh-thuan" title="Bình Thuận">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Bình Thuận
-                                            </a>
-                                        </li>
+                                        <c:forEach items="${nam_trung_bo}" var="item">
+                                            <li>
+                                                <a href="${pageContext.request.contextPath}/ProvinceDetail?pid=${item.id}">
+                                                    <i class="fa-solid fa-arrow-right"></i>
+                                                        ${item.province}
+                                                </a>
+                                            </li>
+                                        </c:forEach>
+
                                     </ul>
                                 </div>  <!-- col-megamenu.// -->
                             </div><!-- end col-3 -->
@@ -382,36 +207,15 @@
                                 <div class="col-megamenu">
                                     <h6 class="title">Tây Nguyên</h6>
                                     <ul class="mega-submenu">
-                                        <li>
-                                            <a href="https://thoitiet.vn/kon-tum" title="Kon Tum">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Kon Tum
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/gia-lai" title="Gia Lai">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Gia Lai
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/dak-lak" title="Đắk Lắk">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Đắk Lắk
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/dak-nong" title="Đắk Nông">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Đắk Nông
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/lam-dong" title="Lâm Đồng">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Lâm Đồng
-                                            </a>
-                                        </li>
+                                        <c:forEach items="${tay_nguyen}" var="item">
+                                            <li>
+                                                <a href="${pageContext.request.contextPath}/ProvinceDetail?pid=${item.id}">
+                                                    <i class="fa-solid fa-arrow-right"></i>
+                                                        ${item.province}
+                                                </a>
+                                            </li>
+                                        </c:forEach>
+
                                     </ul>
                                 </div>  <!-- col-megamenu.// -->
                             </div><!-- end col-3 -->
@@ -419,42 +223,15 @@
                                 <div class="col-megamenu">
                                     <h6 class="title">Đông Nam Bộ</h6>
                                     <ul class="mega-submenu">
-                                        <li>
-                                            <a href="https://thoitiet.vn/binh-phuoc" title="Bình Phước">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Bình Phước
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/tay-ninh" title="Tây Ninh">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Tây Ninh
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/binh-duong" title="Bình Dương">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Bình Dương
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/dong-nai" title="Đồng Nai">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Đồng Nai
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/ba-ria-vung-tau" title="Bà Rịa - Vũng Tàu">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Bà Rịa - Vũng Tàu
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/ho-chi-minh" title="Hồ Chí Minh">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Hồ Chí Minh
-                                            </a>
-                                        </li>
+                                        <c:forEach items="${dong_nam_bo}" var="item">
+                                            <li>
+                                                <a href="${pageContext.request.contextPath}/ProvinceDetail?pid=${item.id}">
+                                                    <i class="fa-solid fa-arrow-right"></i>
+                                                        ${item.province}
+                                                </a>
+                                            </li>
+                                        </c:forEach>
+
                                     </ul>
                                 </div>  <!-- col-megamenu.// -->
                             </div><!-- end col-3 -->
@@ -462,84 +239,15 @@
                                 <div class="col-megamenu">
                                     <h6 class="title">Đồng bằng sông Cửu Long</h6>
                                     <ul class="mega-submenu">
-                                        <li>
-                                            <a href="https://thoitiet.vn/long-an" title="Long An">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Long An
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/tien-giang" title="Tiền Giang">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Tiền Giang
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/ben-tre" title="Bến Tre">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Bến Tre
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/tra-vinh" title="Trà Vinh">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Trà Vinh
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/vinh-long" title="Vĩnh Long">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Vĩnh Long
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/dong-thap" title="Đồng Tháp">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Đồng Tháp
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/an-giang" title="An Giang">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                An Giang
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/kien-giang" title="Kiên Giang">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Kiên Giang
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/can-tho" title="Cần Thơ">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Cần Thơ
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/hau-giang" title="Hậu Giang">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Hậu Giang
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/soc-trang" title="Sóc Trăng">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Sóc Trăng
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/bac-lieu" title="Bạc Liêu">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Bạc Liêu
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://thoitiet.vn/ca-mau" title="Cà Mau">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                                Cà Mau
-                                            </a>
-                                        </li>
+                                        <c:forEach items="${db_songcuulong}" var="item">
+                                            <li>
+                                                <a href="${pageContext.request.contextPath}/ProvinceDetail?pid=${item.id}">
+                                                    <i class="fa-solid fa-arrow-right"></i>
+                                                        ${item.province}
+                                                </a>
+                                            </li>
+                                        </c:forEach>
+
                                     </ul>
                                 </div>  <!-- col-megamenu.// -->
                             </div><!-- end col-3 -->
