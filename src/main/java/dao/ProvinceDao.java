@@ -29,6 +29,18 @@ public class ProvinceDao {
             return null;
         }
     }
+    public List<Province> getListProvinceByRegion(String region){
+        try {
+            List<Province> provinces = DbConnector.get().withHandle(h ->
+                    h.createQuery("SELECT * FROM province_dim where region = ?").bind(0,region)
+                            .mapToBean(Province.class).stream().collect(Collectors.toList())
+            );
+            return provinces;
+        } catch (Exception e) {
+            System.out.println(e.getStackTrace());
+            return null;
+        }
+    }
 
     public List<ProvinceWeather> getListOfLastestWeather() {
         try {
