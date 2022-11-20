@@ -2,6 +2,7 @@
 <%@ page import="bean.ProvinceWeather" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <jsp:useBean id="provinceWeather" scope="request" type="bean.ProvinceWeather"/>
+
 <jsp:useBean id="dong_bac_bo" scope="request" type="java.util.List"/>
 <jsp:useBean id="tay_bac_bo" scope="request" type="java.util.List"/>
 <jsp:useBean id="db_songhong" scope="request" type="java.util.List"/>
@@ -39,6 +40,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <!-- CSS only -->
+    <%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">--%>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script type="text/javascript" async=""
             src="./Dự báo thời tiết ${provinceWeather.province} hôm nay, ngày mai và 10 ngày tới_files/analytics.js.download"></script>
     <script type="text/javascript" async=""
@@ -66,11 +70,6 @@
                 }
             ]
         }
-
-
-
-
-
     </script>
 
 </head>
@@ -530,14 +529,26 @@
 
                     <div class="location-data">
                         <div class="location-data-summary">
-                            <div class="current-location">
+                            <div class="current-location hourly-tab">
                                 <div class="weather-feature d-flex flex-wrap justify-content-between align-items-center mt-2 mb-2">
                                     <h2>
                                         Thời tiết ${provinceWeather.province} theo giờ (24h)
                                     </h2>
-                                    <a href="https://thoitiet.vn/ha-giang/theo-gio" class="weather-feature-day-btn">
-                                        Thời tiết 24h
-                                    </a>
+                                    <p id="hidden-text-id" style="display:none;">${provinceWeather.id}</p>
+                                    <p id="hidden-text-path" style="display:none;">http://localhost:8080/2022_T4_Nhom8_war_exploded/ProvinceDetail</p>
+                                    <%--                                    <a href="https://thoitiet.vn/ha-giang/theo-gio" class="weather-feature-day-btn">--%>
+                                    <%--                                        Thời tiết 24h--%>
+                                    <%--                                    </a>--%>
+                                    <div class="dropdown">
+                                        <button class="btn bg-white dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span class="dropdown-date-show">${requestScope.showDate}</span>
+                                        </button>
+                                        <div id="sandbox-container" class="dropdown-menu" aria-labelledby="dropdownMenuButton" style=" width: 210px;">
+                                            <div></div>
+                                        </div>
+                                    </div>
+
+
                                 </div>
                                 <div id="carousel-hourly" class="carousel slide" data-ride="carousel"
                                      data-interval="9000" data-touch="true">
@@ -558,9 +569,10 @@
 
                                                         </h3>
                                                         <div class="card-city-body">
-                                                            <img src="https://data.thoitiet.vn/weather/icons/03n@2x.png" title="mây cụm">
+                                                            <img src="./Dự báo thời tiết Hà Giang hôm nay, ngày mai và 10 ngày tới_files/04d@2x.png"
+                                                                 title="Mây cụm">
                                                             <div class="precipitation" title="Lượng mưa">
-                                                                <i class="fa-solid fa-droplet"></i>
+                                                                <i class="bi bi-droplet"></i>
                                                                     ${item.humidity} %
                                                             </div>
                                                         </div>
@@ -647,17 +659,7 @@
                 </div>
                 <!--Quảng cáo-->
                 <div class="col-12 col-md-4">
-                    <div class="dropdown w-100 dropdown-region">
-                        <button class="btn dropdown-toggle w-100" type="button" id="dropdownMenuButton"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown button
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </div>
+
                     <div class="row">
                         <div class="col-6 col-md-6">
                             <article class="forecast">
@@ -909,6 +911,8 @@
 <script src="js/jquery.nice-select.min.js"></script>
 <!-- ScrollUp js -->
 <script src="js/scrollUp.min.js"></script>
+<script src="js/bootstrap-datepicker.min.js"></script>
+<script src="js/bootstrap-datepicker.vi.min.js"></script>
 <!-- Main/Activator js -->
 <script src="js/main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
@@ -962,7 +966,6 @@
                 }
             }]
     };
-
     const config = {
         plugins: [ChartDataLabels],
         type: 'line',
@@ -990,17 +993,13 @@
                 },
                 padding: 100
             }
-
         }
     };
-
     function drawChart() {
         var ctx = document.getElementById('myChart');
         new Chart(ctx, config);
     }
-
     drawChart();
-
     // char mưa
     const dataMua = {
         labels: ['CN Ngày 06', 'T2 Ngày 07', 'T3 Ngày 08', 'T4 Ngày 09', 'T5 Ngày 10', 'T6 Ngày 11', 'T7 Ngày 12', 'CN Ngày 13'],
@@ -1049,17 +1048,13 @@
                     color: 'rgb(255, 99, 132)'
                 }
             }
-
         }
     };
-
     function drawChartMua() {
         var ctx = document.getElementById('rain');
         new Chart(ctx, configMua);
     }
-
     drawChartMua();
-
     // theo giờ
     const dataMuaTheoGio = {
         labels: ['16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '00:00', '01:00', '02:00', '03:00'],
@@ -1124,15 +1119,12 @@
                     color: 'rgb(255, 99, 132)'
                 }
             }
-
         }
     };
-
     function drawChartMuaHour() {
         var ctx = document.getElementById('rainHour');
         new Chart(ctx, configMuaTheoGio);
     }
-
     drawChartMuaHour();
 </script>
 <style>
@@ -1151,16 +1143,12 @@
         src="./Dự báo thời tiết ${provinceWeather.province} hôm nay, ngày mai và 10 ngày tới_files/js(1)"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
-
     function gtag() {
         dataLayer.push(arguments);
     }
-
     gtag('js', new Date());
-
     gtag('config', 'G-KVHV391KVM');
 </script>
-
 
 </body>
 </html>
