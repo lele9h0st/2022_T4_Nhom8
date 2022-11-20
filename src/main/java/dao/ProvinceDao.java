@@ -34,16 +34,16 @@ public class ProvinceDao {
     }
 
     public List<ProvinceWeather> getListOfLastestWeather() {
-        try {
+//        try {
             List<ProvinceWeather> provinceWeathers = DbConnector.get().withHandle(h ->
                     h.createQuery("SELECT b.id, b.province,b.region,c.full_date,a.time,a.temperature,a.status,a.lowTemp,a.highTemp,a.humidity,a.visibility,a.wind,a.uv,a.air FROM `weather` a join `province_dim` b on a.province =b.id join `date_dim` c on a.date =c.date_sk WHERE isDelete=0 and dateUpdate='0';")
                             .mapToBean(ProvinceWeather.class).stream().collect(Collectors.toList())
             );
             return provinceWeathers;
-        } catch (Exception e) {
-            System.out.println(e.getStackTrace());
-            return null;
-        }
+//        } catch (Exception e) {
+//            System.out.println(e.getStackTrace());
+//            return null;
+//        }
     }
 
     public Province getProvinceById(String id) {

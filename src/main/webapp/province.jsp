@@ -30,8 +30,11 @@
 
     <link rel="stylesheet" href="./css/site.css">
     <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+          integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <!-- CSS only -->
-<%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">--%>
+    <%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">--%>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script type="text/javascript" async=""
             src="./Dự báo thời tiết ${provinceWeather.province} hôm nay, ngày mai và 10 ngày tới_files/analytics.js.download"></script>
@@ -60,9 +63,6 @@
                 }
             ]
         }
-
-
-
 
 
 
@@ -110,10 +110,10 @@
 </header>
 <nav class="navbar sticky-top navbar-expand-md pb-1 bg-white navbar-light">
     <div class="container" style="position:relative">
-        <a class="navbar-brand logo" href="https://thoitiet.vn/">
-            <img src="./Dự báo thời tiết ${provinceWeather.province} hôm nay, ngày mai và 10 ngày tới_files/logo-header.png"
+        <a class="navbar-brand logo" href="${pageContext.request.contextPath}">
+            <img src="./images/logo-header.png"
                  class="img-fluid d-none d-md-block">
-            <img src="./Dự báo thời tiết ${provinceWeather.province} hôm nay, ngày mai và 10 ngày tới_files/logo-mobile.png"
+            <img src="./images/logo-mobile.png"
                  class="img-fluid d-block d-md-none">
         </a>
         <div class="search d-md-none">
@@ -133,7 +133,9 @@
                            class="form-control basicModalAutoSelect search-input"><input type="hidden"
                                                                                          name="simple_select">
                     <span class="search-icon">
-                        <i class="bi bi-search"></i>
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
                     </span>
                 </div>
             </div>
@@ -141,7 +143,7 @@
                 <li class="nav-item dropdown has-megamenu">
                     <span class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
                           aria-expanded="false" style="cursor:pointer">
-                        <i class="bi bi-clipboard-data"></i>
+                        <i class="fa-solid fa-clipboard"></i>
                         Tỉnh - Thành phố
                     </span>
                     <div class="dropdown-menu megamenu rounded-0" role="menu">
@@ -150,57 +152,78 @@
                                 <div class="col-megamenu">
                                     <h6 class="title">Đông Bắc Bộ</h6>
                                     <ul class="mega-submenu">
+
+                                        <!--
+=======
+>>>>>>> c044e3393a2b3abb72a5dc95a56ed65e81d5b1dc
                                         <li>
                                             <a href="https://thoitiet.vn/ha-giang" title="${provinceWeather.province}">
                                                 <i class="bi bi-arrow-right-short"></i>
                                                 ${provinceWeather.province}
                                             </a>
                                         </li>
+
+                                        -->
                                         <li>
                                             <a href="https://thoitiet.vn/cao-bang" title="Cao Bằng">
-                                                <i class="bi bi-arrow-right-short"></i>
+                                                <i class="fa-solid fa-arrow-right"></i>
+
                                                 Cao Bằng
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/bac-kan" title="Bắc Kạn">
-                                                <i class="bi bi-arrow-right-short"></i>
+
+                                                <i class="fa-solid fa-arrow-right"></i>
+
                                                 Bắc Kạn
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/tuyen-quang" title="Tuyên Quang">
-                                                <i class="bi bi-arrow-right-short"></i>
+
+                                                <i class="fa-solid fa-arrow-right"></i>
+
                                                 Tuyên Quang
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/thai-nguyen" title="Thái Nguyên">
-                                                <i class="bi bi-arrow-right-short"></i>
+
+                                                <i class="fa-solid fa-arrow-right"></i>
+
                                                 Thái Nguyên
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/lang-son" title="Lạng Sơn">
-                                                <i class="bi bi-arrow-right-short"></i>
+
+                                                <i class="fa-solid fa-arrow-right"></i>
+
                                                 Lạng Sơn
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/quang-ninh" title="Quảng Ninh">
-                                                <i class="bi bi-arrow-right-short"></i>
+
+                                                <i class="fa-solid fa-arrow-right"></i>
+
                                                 Quảng Ninh
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/bac-giang" title="Bắc Giang">
-                                                <i class="bi bi-arrow-right-short"></i>
+
+                                                <i class="fa-solid fa-arrow-right"></i>
+
                                                 Bắc Giang
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/phu-tho" title="Phú Thọ">
-                                                <i class="bi bi-arrow-right-short"></i>
+
+                                                <i class="fa-solid fa-arrow-right"></i>
+
                                                 Phú Thọ
                                             </a>
                                         </li>
@@ -213,37 +236,49 @@
                                     <ul class="mega-submenu">
                                         <li>
                                             <a href="https://thoitiet.vn/lao-cai" title="Lào Cai">
-                                                <i class="bi bi-arrow-right-short"></i>
+
+                                                <i class="fa-solid fa-arrow-right"></i>
+
                                                 Lào Cai
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/dien-bien" title="Điện Biên">
-                                                <i class="bi bi-arrow-right-short"></i>
+
+                                                <i class="fa-solid fa-arrow-right"></i>
+
                                                 Điện Biên
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/lai-chau" title="Lai Châu">
-                                                <i class="bi bi-arrow-right-short"></i>
+
+                                                <i class="fa-solid fa-arrow-right"></i>
+
                                                 Lai Châu
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/son-la" title="Sơn La">
-                                                <i class="bi bi-arrow-right-short"></i>
+
+                                                <i class="fa-solid fa-arrow-right"></i>
+
                                                 Sơn La
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/yen-bai" title="Yên Bái">
-                                                <i class="bi bi-arrow-right-short"></i>
+
+                                                <i class="fa-solid fa-arrow-right"></i>
+
                                                 Yên Bái
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/hoa-binh" title="Hoà Bình">
-                                                <i class="bi bi-arrow-right-short"></i>
+
+                                                <i class="fa-solid fa-arrow-right"></i>
+
                                                 Hoà Bình
                                             </a>
                                         </li>
@@ -256,55 +291,73 @@
                                     <ul class="mega-submenu">
                                         <li>
                                             <a href="https://thoitiet.vn/ha-noi" title="Hà Nội">
-                                                <i class="bi bi-arrow-right-short"></i>
+
+                                                <i class="fa-solid fa-arrow-right"></i>
+
                                                 Hà Nội
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/vinh-phuc" title="Vĩnh Phúc">
-                                                <i class="bi bi-arrow-right-short"></i>
+
+                                                <i class="fa-solid fa-arrow-right"></i>
+
                                                 Vĩnh Phúc
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/bac-ninh" title="Bắc Ninh">
-                                                <i class="bi bi-arrow-right-short"></i>
+
+                                                <i class="fa-solid fa-arrow-right"></i>
+
                                                 Bắc Ninh
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/hai-duong" title="Hải Dương">
-                                                <i class="bi bi-arrow-right-short"></i>
+
+                                                <i class="fa-solid fa-arrow-right"></i>
+
                                                 Hải Dương
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/hai-phong" title="Hải Phòng">
-                                                <i class="bi bi-arrow-right-short"></i>
+
+                                                <i class="fa-solid fa-arrow-right"></i>
+
                                                 Hải Phòng
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/hung-yen" title="Hưng Yên">
-                                                <i class="bi bi-arrow-right-short"></i>
+
+                                                <i class="fa-solid fa-arrow-right"></i>
+
                                                 Hưng Yên
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/thai-binh" title="Thái Bình">
-                                                <i class="bi bi-arrow-right-short"></i>
+
+                                                <i class="fa-solid fa-arrow-right"></i>
+
                                                 Thái Bình
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/ha-nam" title="Hà Nam">
-                                                <i class="bi bi-arrow-right-short"></i>
+
+                                                <i class="fa-solid fa-arrow-right"></i>
+
                                                 Hà Nam
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/nam-dinh" title="Nam Định">
-                                                <i class="bi bi-arrow-right-short"></i>
+
+                                                <i class="fa-solid fa-arrow-right"></i>
+
                                                 Nam Định
                                             </a>
                                         </li>
@@ -323,37 +376,49 @@
                                     <ul class="mega-submenu">
                                         <li>
                                             <a href="https://thoitiet.vn/thanh-hoa" title="Thanh Hóa">
-                                                <i class="bi bi-arrow-right-short"></i>
+
+                                                <i class="fa-solid fa-arrow-right"></i>
+
                                                 Thanh Hóa
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/nghe-an" title="Nghệ An">
-                                                <i class="bi bi-arrow-right-short"></i>
+
+                                                <i class="fa-solid fa-arrow-right"></i>
+
                                                 Nghệ An
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/ha-tinh" title="Hà Tĩnh">
-                                                <i class="bi bi-arrow-right-short"></i>
+
+                                                <i class="fa-solid fa-arrow-right"></i>
+
                                                 Hà Tĩnh
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/quang-binh" title="Quảng Bình">
-                                                <i class="bi bi-arrow-right-short"></i>
+
+                                                <i class="fa-solid fa-arrow-right"></i>
+
                                                 Quảng Bình
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/quang-tri" title="Quảng Trị">
-                                                <i class="bi bi-arrow-right-short"></i>
+
+                                                <i class="fa-solid fa-arrow-right"></i>
+
                                                 Quảng Trị
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/thua-thien-hue" title="Thừa Thiên Huế">
-                                                <i class="bi bi-arrow-right-short"></i>
+
+                                                <i class="fa-solid fa-arrow-right"></i>
+
                                                 Thừa Thiên Huế
                                             </a>
                                         </li>
@@ -366,49 +431,59 @@
                                     <ul class="mega-submenu">
                                         <li>
                                             <a href="https://thoitiet.vn/da-nang" title="Đà Nẵng">
-                                                <i class="bi bi-arrow-right-short"></i>
+
+                                                <i class="fa-solid fa-arrow-right"></i>
+
                                                 Đà Nẵng
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/quang-nam" title="Quảng Nam">
-                                                <i class="bi bi-arrow-right-short"></i>
+
+                                                <i class="fa-solid fa-arrow-right"></i>
+
                                                 Quảng Nam
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/quang-ngai" title="Quảng Ngãi">
-                                                <i class="bi bi-arrow-right-short"></i>
+
+                                                <i class="fa-solid fa-arrow-right"></i>
+
                                                 Quảng Ngãi
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/binh-dinh" title="Bình Định">
-                                                <i class="bi bi-arrow-right-short"></i>
+
+                                                <i class="fa-solid fa-arrow-right"></i>
+
                                                 Bình Định
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/phu-yen" title="Phú Yên">
-                                                <i class="bi bi-arrow-right-short"></i>
+
+                                                <i class="fa-solid fa-arrow-right"></i>
+
                                                 Phú Yên
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/khanh-hoa" title="Khánh Hòa">
-                                                <i class="bi bi-arrow-right-short"></i>
+                                                <i class="fa-solid fa-arrow-right"></i>
                                                 Khánh Hòa
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/ninh-thuan" title="Ninh Thuận">
-                                                <i class="bi bi-arrow-right-short"></i>
+                                                <i class="fa-solid fa-arrow-right"></i>
                                                 Ninh Thuận
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/binh-thuan" title="Bình Thuận">
-                                                <i class="bi bi-arrow-right-short"></i>
+                                                <i class="fa-solid fa-arrow-right"></i>
                                                 Bình Thuận
                                             </a>
                                         </li>
@@ -421,31 +496,31 @@
                                     <ul class="mega-submenu">
                                         <li>
                                             <a href="https://thoitiet.vn/kon-tum" title="Kon Tum">
-                                                <i class="bi bi-arrow-right-short"></i>
+                                                <i class="fa-solid fa-arrow-right"></i>
                                                 Kon Tum
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/gia-lai" title="Gia Lai">
-                                                <i class="bi bi-arrow-right-short"></i>
+                                                <i class="fa-solid fa-arrow-right"></i>
                                                 Gia Lai
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/dak-lak" title="Đắk Lắk">
-                                                <i class="bi bi-arrow-right-short"></i>
+                                                <i class="fa-solid fa-arrow-right"></i>
                                                 Đắk Lắk
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/dak-nong" title="Đắk Nông">
-                                                <i class="bi bi-arrow-right-short"></i>
+                                                <i class="fa-solid fa-arrow-right"></i>
                                                 Đắk Nông
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/lam-dong" title="Lâm Đồng">
-                                                <i class="bi bi-arrow-right-short"></i>
+                                                <i class="fa-solid fa-arrow-right"></i>
                                                 Lâm Đồng
                                             </a>
                                         </li>
@@ -458,37 +533,37 @@
                                     <ul class="mega-submenu">
                                         <li>
                                             <a href="https://thoitiet.vn/binh-phuoc" title="Bình Phước">
-                                                <i class="bi bi-arrow-right-short"></i>
+                                                <i class="fa-solid fa-arrow-right"></i>
                                                 Bình Phước
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/tay-ninh" title="Tây Ninh">
-                                                <i class="bi bi-arrow-right-short"></i>
+                                                <i class="fa-solid fa-arrow-right"></i>
                                                 Tây Ninh
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/binh-duong" title="Bình Dương">
-                                                <i class="bi bi-arrow-right-short"></i>
+                                                <i class="fa-solid fa-arrow-right"></i>
                                                 Bình Dương
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/dong-nai" title="Đồng Nai">
-                                                <i class="bi bi-arrow-right-short"></i>
+                                                <i class="fa-solid fa-arrow-right"></i>
                                                 Đồng Nai
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/ba-ria-vung-tau" title="Bà Rịa - Vũng Tàu">
-                                                <i class="bi bi-arrow-right-short"></i>
+                                                <i class="fa-solid fa-arrow-right"></i>
                                                 Bà Rịa - Vũng Tàu
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/ho-chi-minh" title="Hồ Chí Minh">
-                                                <i class="bi bi-arrow-right-short"></i>
+                                                <i class="fa-solid fa-arrow-right"></i>
                                                 Hồ Chí Minh
                                             </a>
                                         </li>
@@ -501,79 +576,79 @@
                                     <ul class="mega-submenu">
                                         <li>
                                             <a href="https://thoitiet.vn/long-an" title="Long An">
-                                                <i class="bi bi-arrow-right-short"></i>
+                                                <i class="fa-solid fa-arrow-right"></i>
                                                 Long An
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/tien-giang" title="Tiền Giang">
-                                                <i class="bi bi-arrow-right-short"></i>
+                                                <i class="fa-solid fa-arrow-right"></i>
                                                 Tiền Giang
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/ben-tre" title="Bến Tre">
-                                                <i class="bi bi-arrow-right-short"></i>
+                                                <i class="fa-solid fa-arrow-right"></i>
                                                 Bến Tre
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/tra-vinh" title="Trà Vinh">
-                                                <i class="bi bi-arrow-right-short"></i>
+                                                <i class="fa-solid fa-arrow-right"></i>
                                                 Trà Vinh
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/vinh-long" title="Vĩnh Long">
-                                                <i class="bi bi-arrow-right-short"></i>
+                                                <i class="fa-solid fa-arrow-right"></i>
                                                 Vĩnh Long
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/dong-thap" title="Đồng Tháp">
-                                                <i class="bi bi-arrow-right-short"></i>
+                                                <i class="fa-solid fa-arrow-right"></i>
                                                 Đồng Tháp
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/an-giang" title="An Giang">
-                                                <i class="bi bi-arrow-right-short"></i>
+                                                <i class="fa-solid fa-arrow-right"></i>
                                                 An Giang
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/kien-giang" title="Kiên Giang">
-                                                <i class="bi bi-arrow-right-short"></i>
+                                                <i class="fa-solid fa-arrow-right"></i>
                                                 Kiên Giang
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/can-tho" title="Cần Thơ">
-                                                <i class="bi bi-arrow-right-short"></i>
+                                                <i class="fa-solid fa-arrow-right"></i>
                                                 Cần Thơ
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/hau-giang" title="Hậu Giang">
-                                                <i class="bi bi-arrow-right-short"></i>
+                                                <i class="fa-solid fa-arrow-right"></i>
                                                 Hậu Giang
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/soc-trang" title="Sóc Trăng">
-                                                <i class="bi bi-arrow-right-short"></i>
+                                                <i class="fa-solid fa-arrow-right"></i>
                                                 Sóc Trăng
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/bac-lieu" title="Bạc Liêu">
-                                                <i class="bi bi-arrow-right-short"></i>
+                                                <i class="fa-solid fa-arrow-right"></i>
                                                 Bạc Liêu
                                             </a>
                                         </li>
                                         <li>
                                             <a href="https://thoitiet.vn/ca-mau" title="Cà Mau">
-                                                <i class="bi bi-arrow-right-short"></i>
+                                                <i class="fa-solid fa-arrow-right"></i>
                                                 Cà Mau
                                             </a>
                                         </li>
@@ -585,25 +660,31 @@
                 </li>
                 <li class="nav-item">
                     <a rel="nofollow" class="nav-link" href="https://thoitiet.vn/dia-danh">
-                        <i class="bi bi-cloud-sun"></i>
+                        <i class="fa-solid fa-cloud-sun"></i>
+
                         Địa danh
                     </a>
                 </li>
                 <li class="nav-item">
                     <a rel="nofollow" class="nav-link" href="https://thoitiet.vn/nui">
-                        <i class="bi bi-geo-fill"></i>
+                        <i class="fa-solid fa-mountain-sun"></i>
+
                         Núi
                     </a>
                 </li>
                 <li class="nav-item">
                     <a rel="nofollow" class="nav-link" href="https://thoitiet.vn/bien">
-                        <i class="bi bi-droplet"></i>
+
+                        <i class="fa-solid fa-water"></i>
+
                         Biển
                     </a>
                 </li>
                 <li class="nav-item">
                     <a rel="nofollow" class="nav-link" href="https://thoitiet.vn/tin-tong-hop/kham-pha">
-                        <i class="bi bi-flower2"></i>
+
+                        <i class="fa-regular fa-flower"></i>
+
                         Khám phá
                     </a>
                 </li>
@@ -619,8 +700,10 @@
             <div class="row">
                 <div class="col-12">
                     <nav aria-label="breadcrumb" class="mt-2">
-                        <ol class="breadcrumb mb-0">
-                            <li class="breadcrumb-item"><a href="https://thoitiet.vn/">Trang chủ</a></li>
+
+                        <ol class="breadcrumb mb-0" >
+                            <li class="breadcrumb-item"><a href="https://thoitiet.vn/" style="color: black">Trang chủ</a></li>
+
                             <li class="breadcrumb-item active" aria-current="page">Thời
                                 tiết ${provinceWeather.province}</li>
                         </ol>
@@ -634,7 +717,7 @@
                         <div class="d-flex flex-column flex-sm-row justify-content-between">
                             <div class="location-name">
                             <span class="location-name-icon">
-                                <i class="bi bi-geo"></i>
+                                <i class="fa-solid fa-location-pin"></i>
                             </span>
                                 <h1 class="location-name-main">
                                     <a href="https://thoitiet.vn/ha-giang">
@@ -643,7 +726,7 @@
                                 </h1>
                                 <a href="https://thoitiet.vn/ha-giang#" rel="nofollow" title="Chọn làm địa chỉ mặc định"
                                    class="btn-current-location" data-lat="22.7933" data-lng="105.01241">
-                                    <i class="bi bi-house-door"></i>
+                                    <i class="fa-regular fa-window-frame"></i>
                                 </a>
                             </div>
                             <div class="share-button">
@@ -658,8 +741,9 @@
 
                         <div class="d-flex flex-wrap">
                             <div class="overview-current">
-                                <img src="./Dự báo thời tiết ${provinceWeather.province} hôm nay, ngày mai và 10 ngày tới_files/04d@2x.png"
-                                     alt="Mây cụm">
+
+                                <img src="https://data.thoitiet.vn/weather/icons/03n@2x.png" alt="mây cụm">
+
                                 <span class="current-temperature">${provinceWeather.temperature}°</span>
                                 <div class="unit-group">
                                     <p>C</p>
@@ -868,10 +952,9 @@
 
                                                         </h3>
                                                         <div class="card-city-body">
-                                                            <img src="./Dự báo thời tiết Hà Giang hôm nay, ngày mai và 10 ngày tới_files/04d@2x.png"
-                                                                 title="Mây cụm">
+                                                            <img src="https://data.thoitiet.vn/weather/icons/03n@2x.png" title="mây cụm">
                                                             <div class="precipitation" title="Lượng mưa">
-                                                                <i class="bi bi-droplet"></i>
+                                                                <i class="fa-solid fa-droplet"></i>
                                                                     ${item.humidity} %
                                                             </div>
                                                         </div>
@@ -960,6 +1043,14 @@
                 <!--Quảng cáo-->
                 <div class="col-12 col-md-4">
 
+                    <div class="dropdown w-100 dropdown-region">
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="col-6 col-md-6">
                             <article class="forecast">
@@ -969,10 +1060,12 @@
                                         <a href="https://thoitiet.vn/ha-giang">
                                             <h3 class="card-city-title">${provinceWeather.province}</h3>
                                             <div class="card-city-body">
-                                                <img src="./Dự báo thời tiết các tỉnh - thành phố, biển, đất liền ở Việt Nam_files/01d@2x.png"
-                                                     alt="${provinceWeather.province}" title="Clear">
+
+                                                <img src="https://data.thoitiet.vn/weather/icons/03n@2x.png" alt="${provinceWeather.province}" title="Clear">
+
                                                 <div class="precipitation" title="Lượng mưa">
-                                                    <i class="bi bi-droplet"></i>
+                                                    <i class="fa-solid fa-droplet"></i>
+
                                                     65 %
                                                 </div>
                                             </div>
@@ -999,10 +1092,11 @@
                                         <a href="https://thoitiet.vn/cao-bang">
                                             <h3 class="card-city-title">Cao Bằng</h3>
                                             <div class="card-city-body">
-                                                <img src="./Dự báo thời tiết các tỉnh - thành phố, biển, đất liền ở Việt Nam_files/01d@2x.png"
-                                                     alt="Cao Bằng" title="Clear">
+
+                                                <img src="https://data.thoitiet.vn/weather/icons/03n@2x.png" alt="Cao Bằng" title="Clear">
                                                 <div class="precipitation" title="Lượng mưa">
-                                                    <i class="bi bi-droplet"></i>
+                                                    <i class="fa-solid fa-droplet"></i>
+
                                                     58 %
                                                 </div>
                                             </div>
@@ -1029,10 +1123,11 @@
                                         <a href="https://thoitiet.vn/lao-cai">
                                             <h3 class="card-city-title">Lào Cai</h3>
                                             <div class="card-city-body">
-                                                <img src="./Dự báo thời tiết các tỉnh - thành phố, biển, đất liền ở Việt Nam_files/01d@2x.png"
-                                                     alt="Lào Cai" title="Clear">
+
+                                                <img src="https://data.thoitiet.vn/weather/icons/03n@2x.png" alt="Lào Cai" title="Clear">
                                                 <div class="precipitation" title="Lượng mưa">
-                                                    <i class="bi bi-droplet"></i>
+                                                    <i class="fa-solid fa-droplet"></i>
+
                                                     66 %
                                                 </div>
                                             </div>
@@ -1059,10 +1154,11 @@
                                         <a href="https://thoitiet.vn/dien-bien">
                                             <h3 class="card-city-title">Điện Biên</h3>
                                             <div class="card-city-body">
-                                                <img src="./Dự báo thời tiết các tỉnh - thành phố, biển, đất liền ở Việt Nam_files/01d@2x.png"
-                                                     alt="Điện Biên" title="Clear">
+
+                                                <img src="https://data.thoitiet.vn/weather/icons/03n@2x.png" alt="Điện Biêng" title="Clear">
                                                 <div class="precipitation" title="Lượng mưa">
-                                                    <i class="bi bi-droplet"></i>
+                                                    <i class="fa-solid fa-droplet"></i>
+
                                                     62 %
                                                 </div>
                                             </div>
@@ -1224,24 +1320,7 @@
 <script src="./js/site.js.download"></script>
 <script src="./js/geo.js.download"></script>
 
-<%
-    Gson gsonObj = new Gson();
-    Map<Object,Object> map = null;
-    List<Map<Object,Object>> list = new ArrayList<Map<Object,Object>>();
 
-    map = new HashMap<Object,Object>(); map.put("label", "FY07"); map.put("y", 188); list.add(map);
-    map = new HashMap<Object,Object>(); map.put("label", "FY08"); map.put("y", 213); list.add(map);
-    map = new HashMap<Object,Object>(); map.put("label", "FY09"); map.put("y", 213); list.add(map);
-    map = new HashMap<Object,Object>(); map.put("label", "FY10"); map.put("y", 219); list.add(map);
-    map = new HashMap<Object,Object>(); map.put("label", "FY11"); map.put("y", 207); list.add(map);
-    map = new HashMap<Object,Object>(); map.put("label", "FY12"); map.put("y", 167); list.add(map);
-    map = new HashMap<Object,Object>(); map.put("label", "FY13"); map.put("y", 136); list.add(map);
-    map = new HashMap<Object,Object>(); map.put("label", "FY14"); map.put("y", 152); list.add(map);
-    map = new HashMap<Object,Object>(); map.put("label", "FY15"); map.put("y", 129); list.add(map);
-    map = new HashMap<Object,Object>(); map.put("label", "FY16"); map.put("y", 155); list.add(map);
-
-    String dataPoints = gsonObj.toJson(list);
-%>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script >
 
@@ -1249,6 +1328,7 @@
             theme: "light2",
             title: {
                 text: "Nhiệt độ trung bình trong 7 ngày qua."
+
             },
             axisX: {
                 title: "Ngày"
