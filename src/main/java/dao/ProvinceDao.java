@@ -45,6 +45,8 @@ public class ProvinceDao {
         }
     }
 
+
+
     public List<ProvinceWeather> getListOfLastestWeather() {
 //        try {
             List<ProvinceWeather> provinceWeathers = DbConnector.get().withHandle(h ->
@@ -58,7 +60,7 @@ public class ProvinceDao {
 //        }
     }
 
-    public Province getProvinceById(String id) {
+    public Province getProvinceById(int id) {
         try {
             List<Province> provinces = DbConnector.get().withHandle(h ->
                     h.createQuery("select * from province_dim where id=?;")
@@ -71,7 +73,13 @@ public class ProvinceDao {
             return null;
         }
     }
-
+    public List<ProvinceWeather>getRandom4ProvinceBy(){
+        List<ProvinceWeather> provinceWeathers = DbConnector.get().withHandle(h ->
+                h.createQuery("SELECT b.id, b.province,b.region,c.full_date,a.time,a.temperature,a.status,a.lowTemp,a.highTemp,a.humidity,a.visibility,a.wind,a.uv,a.air FROM `weather` a join `province_dim` b on a.province =b.id join `date_dim` c on a.date =c.date_sk WHERE isDelete=0 and dateUpdate='0' ORDER BY RAND() LIMIT 4;")
+                        .mapToBean(ProvinceWeather.class).stream().collect(Collectors.toList())
+        );
+        return provinceWeathers;
+    }
     public Province getProvinceByName(String name) {
         try {
             List<Province> provinces = DbConnector.get().withHandle(h ->

@@ -30,12 +30,17 @@ public class ProvinceDetail extends HttpServlet {
 //        Province province = ProvinceDao.getInstance().getProvinceById(pid);
         System.out.println(pid);
         ProvinceWeather provinceWeather = ProvinceDao.getInstance().getLastestNewsByProvince(pid);
+        Province province =ProvinceDao.getInstance().getProvinceById(pid);
         List<ProvinceWeather> weatherListInDay = ProvinceDao.getInstance().getLastestWeatherByDayAndProvince(pid, date);
         List<Map<Object, Object>> listTempChart = ProvinceDao.getInstance().getListChart(pid, curentDate);
         Gson gsonObj = new Gson();
         String dataPoints = gsonObj.toJson(listTempChart);
 
         System.out.println(dataPoints);
+        List<ProvinceWeather> provinces = ProvinceDao.getInstance().getListOfLastestWeather();
+        request.setAttribute("provinceList", provinces);
+        List<ProvinceWeather> randomProvinces=ProvinceDao.getInstance().getRandom4ProvinceBy();
+        request.setAttribute("randomProvinces", randomProvinces);
         request.setAttribute("listTempChart", dataPoints);
         request.setAttribute("weatherListInDay", weatherListInDay);
         request.setAttribute("provinceWeather", provinceWeather);

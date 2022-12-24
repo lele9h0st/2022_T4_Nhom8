@@ -4,7 +4,8 @@
 <%@ page import="com.google.gson.Gson" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <jsp:useBean id="provinceWeather" scope="request" type="bean.ProvinceWeather"/>
-
+<jsp:useBean id="provinceList" scope="request" type="java.util.List"/>
+<jsp:useBean id="randomProvinces" scope="request" type="java.util.List"/>
 <jsp:useBean id="dong_bac_bo" scope="request" type="java.util.List"/>
 <jsp:useBean id="tay_bac_bo" scope="request" type="java.util.List"/>
 <jsp:useBean id="db_songhong" scope="request" type="java.util.List"/>
@@ -82,19 +83,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-6 col-md-4  order-0">
-                    <div class="header-location">
-                        <span>
-                            <i class="bi bi-geo-alt"></i>
-                            Thành phố của bạn:
-                        </span>
-                        <a class="btn btn-link" href="https://thoitiet.vn/ha-noi">
-                            Hà Nội
-                        </a>
-                        <span class="btn btn-link btn-sm text-muted" onclick="changeLocation()">
-                            <i class="bi bi-arrow-repeat"></i>
-                            Thay đổi
-                        </span>
-                    </div>
+
                 </div>
                 <div class="col-12 col-md-4 order-3 order-md-2">
 
@@ -105,7 +94,7 @@
                             <i class="bi bi-clock"></i>
                             Giờ địa phương:
                         </span>
-                        <span class="btn btn-link" id="timer">16:13 | 06/11/2022</span>
+                        <span class="btn btn-link" id="timer" >${requestScope.showDate}</span>
                     </div>
                 </div>
             </div>
@@ -135,8 +124,41 @@
             <div class="search d-none d-md-block">
                 <div class="form-group mb-0 search-group">
                     <input type="search" name="simple_select_text" placeholder="Nhập tên địa điểm..." autocomplete="off"
-                           class="form-control basicModalAutoSelect search-input"><input type="hidden"
-                                                                                         name="simple_select">
+                           id="search-input-real" class="form-control basicModalAutoSelect search-input" onkeyup="function myFunction() {
+                                var input,filter,dropdownPanel,searchItem,textValue,count;
+                                input= document.getElementById('search-input-real');
+                                dropdownPanel=document.getElementById('dropdown-search-panel');
+                                searchItem=dropdownPanel.getElementsByClassName('search-item');
+                                filter=input.value.toUpperCase();
+                                console.log(filter)
+                                count=0;
+                                 for (i = 0; i < searchItem.length; i++) {
+                                     textValue=searchItem[i].getElementsByTagName('p')[0].innerText;
+                                     if(textValue.toUpperCase().lastIndexOf(filter)>-1){
+                                          searchItem[i].style.display='block';
+                                          console.log(textValue.toUpperCase())
+                                          count++;
+                                     }else{
+                                         searchItem[i].style.display='none';
+                                     }
+                                 }if(count<1){
+                                     dropdownPanel.classList.remove('show');
+                                 }
+                                else if(filter.length>1){
+                                    dropdownPanel.classList.add('show');
+                                }else{
+                                    dropdownPanel.classList.remove('show');
+                                }
+                           }
+                           myFunction()"><input type="hidden"
+                                                name="simple_select">
+                    <div class="bootstrap-autocomplete dropdown-menu " id="dropdown-search-panel"
+                         style="top: 38px; left: 0px; width: 350px;">
+                        <c:forEach items="${provinceList}" var="item">
+                            <a class="dropdown-item search-item" style="overflow: hidden; text-overflow: ellipsis;" href="${pageContext.request.contextPath}/ProvinceDetail?pid=${item.id}">
+                                <p style="color: black">${item.province}</p></a>
+                        </c:forEach>
+                    </div>
                     <span class="search-icon">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </span>
@@ -288,30 +310,7 @@
                         </div><!-- end row -->
                     </div> <!-- dropdown-mega-menu.// -->
                 </li>
-                <li class="nav-item">
-                    <a rel="nofollow" class="nav-link" href="https://thoitiet.vn/dia-danh">
-                        <i class="fa-solid fa-cloud-sun"></i>
-                        Địa danh
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a rel="nofollow" class="nav-link" href="https://thoitiet.vn/nui">
-                        <i class="fa-solid fa-mountain-sun"></i>
-                        Núi
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a rel="nofollow" class="nav-link" href="https://thoitiet.vn/bien">
-                        <i class="fa-solid fa-water"></i>
-                        Biển
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a rel="nofollow" class="nav-link" href="https://thoitiet.vn/tin-tong-hop/kham-pha">
-                        <i class="fa-regular fa-flower"></i>
-                        Khám phá
-                    </a>
-                </li>
+
             </ul>
         </div>
     </div>
@@ -357,9 +356,7 @@
                             </div>
 
                         </div>
-                        <div class="location-auto-refresh">
-                            <span>Đã cập nhật 6 phút trước</span>
-                        </div>
+
 
                         <div class="d-flex flex-wrap">
                             <div class="overview-current">
@@ -572,8 +569,7 @@
 
                                                         </h3>
                                                         <div class="card-city-body">
-                                                            <img src="./Dự báo thời tiết Hà Giang hôm nay, ngày mai và 10 ngày tới_files/04d@2x.png"
-                                                                 title="Mây cụm">
+
                                                             <div class="precipitation" title="Lượng mưa">
                                                                 <i class="bi bi-droplet"></i>
                                                                     ${item.humidity} %
@@ -608,15 +604,7 @@
                                 </div>
                             </div>
                             <!-- thoitiet-ngangchitietthoitiet -->
-                            <div class="google-ads-container mt-2">
-                                <!-- thoitiet-chitiet2 -->
-                                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5437093769370767"
-                                     data-ad-slot="7351011526" data-ad-format="auto"
-                                     data-full-width-responsive="true"></ins>
-                                <script>
-                                    (adsbygoogle = window.adsbygoogle || []).push({});
-                                </script>
-                            </div>
+
                             <div class="current-location weather-feature">
                                 <h2>
                                     Nhiệt độ và khả năng có mưa ${provinceWeather.province} trong 12h tới
@@ -628,34 +616,6 @@
 
                             </div>
 
-                            <div class="google-ads-container mt-2">
-                                <!-- luongmua -->
-                                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5437093769370767"
-                                     data-ad-slot="4706843331" data-ad-format="auto"
-                                     data-full-width-responsive="true"></ins>
-                                <script>
-                                    (adsbygoogle = window.adsbygoogle || []).push({});
-                                </script>
-                            </div>
-
-                            <div class="current-location weather-feature">
-                                <h2>
-                                    Nhiệt độ và khả năng mưa ${provinceWeather.province} những ngày tới
-                                </h2>
-                                <div class="chart-container bg-white">
-                                    <canvas id="myChart" width="897" height="448"
-                                            style="display: block; box-sizing: border-box; height: 358.4px; width: 717.6px;"></canvas>
-                                </div>
-                            </div>
-                            <div class="current-location weather-feature">
-                                <h2>
-                                    Lượng mưa ${provinceWeather.province} những ngày tới
-                                </h2>
-                                <div class="chart-container bg-white">
-                                    <canvas id="rain" width="897" height="448"
-                                            style="display: block; box-sizing: border-box; height: 358.4px; width: 717.6px;"></canvas>
-                                </div>
-                            </div>
 
                         </div>
                     </div>
@@ -664,28 +624,27 @@
                 <!--Quảng cáo-->
                 <div class="col-12 col-md-4">
                     <div class="row">
+<c:forEach items="${randomProvinces}" var="item" varStatus="loop">
                         <div class="col-6 col-md-6">
                             <article class="forecast">
 
                                 <div class="location-wheather">
                                     <div class="card mb-3">
                                         <a href="https://thoitiet.vn/ha-giang">
-                                            <h3 class="card-city-title">${provinceWeather.province}</h3>
+                                            <h3 class="card-city-title">${item.province}</h3>
                                             <div class="card-city-body">
-                                                <img src="https://data.thoitiet.vn/weather/icons/03n@2x.png" alt="${provinceWeather.province}" title="Clear">
+                                                <img src="https://data.thoitiet.vn/weather/icons/03n@2x.png" alt="${item.province}" title="Clear">
 
                                                 <div class="precipitation" title="Lượng mưa">
                                                     <i class="fa-solid fa-droplet"></i>
-                                                    65 %
+                                                    ${item.humidity} %
                                                 </div>
                                             </div>
                                             <p class="mb-0">
-                                                Bầu trời quang đãng
+                                               ${item.status}
                                             </p>
                                             <div class="card-city-footer">
-                                                <p title="Hiện tại">23°</p>
-                                                <p>/</p>
-                                                <p title="Cảm giác như">23°</p>
+                                                <p> ${item.temperature}°C/${item.highTemp}°C</p>
                                             </div>
 
                                         </a>
@@ -694,93 +653,7 @@
 
                             </article>
                         </div>
-                        <div class="col-6 col-md-6">
-                            <article class="forecast">
-
-                                <div class="location-wheather">
-                                    <div class="card mb-3">
-                                        <a href="https://thoitiet.vn/cao-bang">
-                                            <h3 class="card-city-title">Cao Bằng</h3>
-                                            <div class="card-city-body">
-                                                <img src="https://data.thoitiet.vn/weather/icons/03n@2x.png" alt="Cao Bằng" title="Clear">
-                                                <div class="precipitation" title="Lượng mưa">
-                                                    <i class="fa-solid fa-droplet"></i>
-                                                    58 %
-                                                </div>
-                                            </div>
-                                            <p class="mb-0">
-                                                Bầu trời quang đãng
-                                            </p>
-                                            <div class="card-city-footer">
-                                                <p title="Hiện tại">24°</p>
-                                                <p>/</p>
-                                                <p title="Cảm giác như">23°</p>
-                                            </div>
-
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </article>
-                        </div>
-                        <div class="col-6 col-md-6">
-                            <article class="forecast">
-
-                                <div class="location-wheather">
-                                    <div class="card mb-3">
-                                        <a href="https://thoitiet.vn/lao-cai">
-                                            <h3 class="card-city-title">Lào Cai</h3>
-                                            <div class="card-city-body">
-                                                <img src="https://data.thoitiet.vn/weather/icons/03n@2x.png" alt="Lào Cai" title="Clear">
-                                                <div class="precipitation" title="Lượng mưa">
-                                                    <i class="fa-solid fa-droplet"></i>
-                                                    66 %
-                                                </div>
-                                            </div>
-                                            <p class="mb-0">
-                                                Bầu trời quang đãng
-                                            </p>
-                                            <div class="card-city-footer">
-                                                <p title="Hiện tại">23°</p>
-                                                <p>/</p>
-                                                <p title="Cảm giác như">24°</p>
-                                            </div>
-
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </article>
-                        </div>
-                        <div class="col-6 col-md-6">
-                            <article class="forecast">
-
-                                <div class="location-wheather">
-                                    <div class="card mb-3">
-                                        <a href="https://thoitiet.vn/dien-bien">
-                                            <h3 class="card-city-title">Điện Biên</h3>
-                                            <div class="card-city-body">
-                                                <img src="https://data.thoitiet.vn/weather/icons/03n@2x.png" alt="Điện Biêngit" title="Clear">
-                                                <div class="precipitation" title="Lượng mưa">
-                                                    <i class="fa-solid fa-droplet"></i>
-                                                    62 %
-                                                </div>
-                                            </div>
-                                            <p class="mb-0">
-                                                Bầu trời quang đãng
-                                            </p>
-                                            <div class="card-city-footer">
-                                                <p title="Hiện tại">23°</p>
-                                                <p>/</p>
-                                                <p title="Cảm giác như">23°</p>
-                                            </div>
-
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </article>
-                        </div>
+</c:forEach>
                     </div>
                 </div>
             </div>
@@ -793,86 +666,17 @@
         <div class="row">
             <div class="col-12 col-md-8">
                 <div class="footer-items footer-items-left">
-                    <span>© 2021 Kênh thông tin dự báo <a href="https://thoitiet.vn/">Thời tiết</a></span>
-                    <a href="mailto:info@thoitiet.vn" rel="nofollow">
-                        <i class="bi bi-envelope"></i>
-                        info@thoitiet.vn
-                    </a>
-                    <div class="social-footer-items">
-                        <a class="social-footer social-facebook" href="https://www.facebook.com/kenhdubaothoitiet"
-                           rel="nofollow" target="_blank">
-                            <i class="bi bi-facebook"></i>
-                        </a>
-                        <a class="social-footer social-twitter" href="https://twitter.com/thoitietvn2021" rel="nofollow"
-                           target="_blank">
-                            <i class="bi bi-twitter"></i>
-                        </a>
-                        <a class="social-footer social-instagram" href="https://www.instagram.com/thoitietvn2021/"
-                           rel="nofollow" target="_blank">
-                            <i class="bi bi-instagram"></i>
-                        </a>
-                        <a class="social-footer social-linkedin"
-                           href="https://www.linkedin.com/in/thoitiet-vn-250186218/" rel="nofollow" target="_blank">
-                            <i class="bi bi-linkedin"></i>
-                        </a>
-                        <a class="social-footer social-pinterest" href="https://www.pinterest.com/thoitietvn"
-                           rel="nofollow" target="_blank">
-                            <img src="./Dự báo thời tiết ${provinceWeather.province} hôm nay, ngày mai và 10 ngày tới_files/pinterest.png"
-                                 alt="pinterest">
-                        </a>
-                        <a class="social-footer social-youtube"
-                           href="https://www.youtube.com/channel/UCeIRG6_32j8RmV4We0-5jTA" rel="nofollow"
-                           target="_blank">
-                            <i class="bi bi-youtube"></i>
-                        </a>
-                    </div>
+                    <span>© 2021 Kênh thông tin dự báo Thời tiết</span>
+
+
                 </div>
             </div>
-            <div class="col-12 col-md-4 text-left text-sm-right">
-                <ul class="list-inline footer-items">
-                    <li class="list-inline-item">
-                        <a href="https://thoitiet.vn/widget" rel="nofollow">Widget</a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="https://thoitiet.vn/dieu-khoan-dich-vu" rel="nofollow">Điều khoản dịch vụ</a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="https://thoitiet.vn/chinh-sach-bao-mat" rel="nofollow">Chính sách bảo mật</a>
-                    </li>
-                </ul>
-            </div>
+
         </div>
     </div>
 </footer>
 
-<script src="./Dự báo thời tiết ${provinceWeather.province} hôm nay, ngày mai và 10 ngày tới_files/jquery.min.js.download"></script>
-<script src="./Dự báo thời tiết ${provinceWeather.province} hôm nay, ngày mai và 10 ngày tới_files/popper.min.js.download"
-        integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG"
-        crossorigin="anonymous"></script>
-<script src="./Dự báo thời tiết ${provinceWeather.province} hôm nay, ngày mai và 10 ngày tới_files/bootstrap.bundle.min.js.download"></script>
-<script src="./Dự báo thời tiết ${provinceWeather.province} hôm nay, ngày mai và 10 ngày tới_files/moment.min.js.download"
-        crossorigin="anonymous"></script>
-<script src="./Dự báo thời tiết ${provinceWeather.province} hôm nay, ngày mai và 10 ngày tới_files/bootstrap-autocomplete.min.js.download"></script>
 
-<div class="modal fade" tabindex="-1" id="requestLocalModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Website cần biết địa điểm của bạn để gợi ý thông tin dự báo thời tiết được chính xác.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Từ chối</button>
-                <button type="button" class="btn btn-primary" onclick="getLocation()">Đồng ý</button>
-            </div>
-        </div>
-    </div>
-</div>
 <!-- jQuery-V1.12.4 -->
 <script src="js/vendor/jquery-1.12.4.min.js"></script>
 <!-- Popper js -->

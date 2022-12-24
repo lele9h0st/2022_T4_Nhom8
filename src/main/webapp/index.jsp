@@ -41,27 +41,13 @@
     <link href="./css/bootstrap.min.css" rel="stylesheet">
 
 
-
-
 <body>
 <header class="bg-white">
     <div class="py-1 border-bottom shadow-sm">
         <div class="container">
             <div class="row">
                 <div class="col-6 col-md-4  order-0">
-                    <div class="header-location">
-                        <span>
-                            <i class="bi bi-geo-alt"></i>
-                            Thành phố của bạn:
-                        </span>
-                        <a class="btn btn-link" href="https://thoitiet.vn/ha-noi">
-                            Hà Nội
-                        </a>
-                        <span class="btn btn-link btn-sm text-muted" onclick="changeLocation()">
-                            <i class="bi bi-arrow-repeat"></i>
-                            Thay đổi
-                        </span>
-                    </div>
+
                 </div>
                 <div class="col-12 col-md-4 order-3 order-md-2">
 
@@ -72,7 +58,7 @@
                             <i class="bi bi-clock"></i>
                             Giờ địa phương:
                         </span>
-                        <span class="btn btn-link" id="timer">16:13 | 06/11/2022</span>
+                        <span class="btn btn-link" id="timer" >${requestScope.showDate}</span>
                     </div>
                 </div>
             </div>
@@ -91,6 +77,7 @@
             <div class="form-group mb-0 search-group">
                 <input type="search" name="simple_select_text" placeholder="Nhập tên địa điểm..." autocomplete="off"
                        class="form-control basicModalAutoSelect search-input"><input type="hidden" name="simple_select">
+
             </div>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
@@ -101,10 +88,44 @@
             <div class="search d-none d-md-block">
                 <div class="form-group mb-0 search-group">
                     <input type="search" name="simple_select_text" placeholder="Nhập tên địa điểm..." autocomplete="off"
-                           class="form-control basicModalAutoSelect search-input"><input type="hidden"
-                                                                                         name="simple_select">
+                           id="search-input-real" class="form-control basicModalAutoSelect search-input" onkeyup="function myFunction() {
+                                var input,filter,dropdownPanel,searchItem,textValue,count;
+                                input= document.getElementById('search-input-real');
+                                dropdownPanel=document.getElementById('dropdown-search-panel');
+                                searchItem=dropdownPanel.getElementsByClassName('search-item');
+                                filter=input.value.toUpperCase();
+                                console.log(filter)
+                                count=0;
+                                 for (i = 0; i < searchItem.length; i++) {
+                                     textValue=searchItem[i].getElementsByTagName('p')[0].innerText;
+                                     if(textValue.toUpperCase().lastIndexOf(filter)>-1){
+                                          searchItem[i].style.display='block';
+                                          console.log(textValue.toUpperCase())
+                                          count++;
+                                     }else{
+                                         searchItem[i].style.display='none';
+                                     }
+                                 }if(count<1){
+                                     dropdownPanel.classList.remove('show');
+                                 }
+                                else if(filter.length>1){
+                                    dropdownPanel.classList.add('show');
+                                }else{
+                                    dropdownPanel.classList.remove('show');
+                                }
+                           }
+                           myFunction()"><input type="hidden"
+                                                name="simple_select">
+                    <div class="bootstrap-autocomplete dropdown-menu " id="dropdown-search-panel"
+                         style="top: 38px; left: 0px; width: 350px;">
+                        <c:forEach items="${provinceList}" var="item">
+                            <a class="dropdown-item search-item" style="overflow: hidden; text-overflow: ellipsis;" href="${pageContext.request.contextPath}/ProvinceDetail?pid=${item.id}">
+                                <p style="color: black">${item.province}</p></a>
+                        </c:forEach>
+                    </div>
                     <span class="search-icon">
                         <i class="fa-solid fa-magnifying-glass"></i>
+
                     </span>
                 </div>
             </div>
@@ -131,7 +152,7 @@
                                             <li>
                                                 <a href="${pageContext.request.contextPath}/ProvinceDetail?pid=${item.id}">
                                                     <i class="fa-solid fa-arrow-right"></i>
-                                                    ${item.province}
+                                                        ${item.province}
                                                 </a>
                                             </li>
                                         </c:forEach>
@@ -254,30 +275,6 @@
                         </div><!-- end row -->
                     </div> <!-- dropdown-mega-menu.// -->
                 </li>
-                <li class="nav-item">
-                    <a rel="nofollow" class="nav-link" href="https://thoitiet.vn/dia-danh">
-                        <i class="fa-solid fa-cloud-sun"></i>
-                        Địa danh
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a rel="nofollow" class="nav-link" href="https://thoitiet.vn/nui">
-                        <i class="fa-solid fa-mountain-sun"></i>
-                        Núi
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a rel="nofollow" class="nav-link" href="https://thoitiet.vn/bien">
-                        <i class="fa-solid fa-water"></i>
-                        Biển
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a rel="nofollow" class="nav-link" href="https://thoitiet.vn/tin-tong-hop/kham-pha">
-                        <i class="fa-regular fa-flower"></i>
-                        Khám phá
-                    </a>
-                </li>
             </ul>
         </div>
     </div>
@@ -289,14 +286,14 @@
     </div>
     <div class="weather_wrap">
         <c:forEach items="${provinceList}" var="item">
-        <a href="${pageContext.request.contextPath}/ProvinceDetail?pid=${item.id}">
-            <div class="weather_box">
-                <h3>${item.province}</h3>
-                <img src="https://data.thoitiet.vn/weather/icons/03n@2x.png">
-                <p>${item.status}</p>
-                <p>${item.temperature}/${item.highTemp}</p>
-            </div>
-        </a>
+            <a href="${pageContext.request.contextPath}/ProvinceDetail?pid=${item.id}">
+                <div class="weather_box">
+                    <h3>${item.province}</h3>
+                    <img src="https://data.thoitiet.vn/weather/icons/03n@2x.png">
+                    <p>${item.status}</p>
+                    <p> ${item.temperature}°C/${item.highTemp}°C</p>
+                </div>
+            </a>
         </c:forEach>
     </div>
 </div>
@@ -349,7 +346,6 @@
         crossorigin="anonymous"></script>
 <script src="./js/site.js.download"></script>
 <script src="./js/geo.js.download"></script>
-
 
 
 </body>
